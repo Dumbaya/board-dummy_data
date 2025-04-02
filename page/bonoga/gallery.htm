@@ -1,0 +1,214 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.bonogaVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$user_nickname=$_SESSION['user_nickname'];
+
+	$bv = new bonogaVO();
+
+	$bo_cnt = $bv->select(1);
+	$ab_cnt = $bv->select(3);
+
+	if(isset($_GET['page'])){
+		$page=$_GET['page'];
+	}
+	else{
+			$page=1;
+	}
+
+	$sp_max = 4;//한 페이지에 보여줄 개수
+	$list_n = 5;//한 번에 리스트 몇개 보여줄지
+
+	$list_cnt = ceil($page/$list_n);
+	$list_start = (($list_cnt -1) * $list_n) + 1;
+	$list_end = $list_start + $list_n - 1;
+
+	$total_page = ceil($bo_cnt/$sp_max);
+	if($list_end > $total_page) $list_end = $total_page;
+	$total_list = ceil($total_page/$list_n);
+	$start_num = ($page-1) * $sp_max;
+?>
+<!DOCTYPE html>
+<html lang="ko">
+	<script src="../../js/bonoga.js"></script>
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
+	<link rel="stylesheet" href="http://{도메인}/css/bonoga.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Gallery</title>
+</head>
+
+<body class="backg_body">
+	<div class="backgc_div">
+		<div class="bonoga_div">
+			<h1>
+				<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
+					<path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
+					<path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
+				</svg>
+			</h1>
+			<div class="menu_div">
+				<form class="gohome_form" action="http://{도메인}/page/homepage.htm">
+					<button type="submit">이전</button>
+				</form>
+				<form class="go_writef" method="post" action="http://{도메인}/page/bonoga/imgframe_write.htm">
+					<button type="submit">사진 올리기</button>
+				</form>
+				<?php if($_SESSION['user_role']==2) : ?>
+					<form class="announ_write" method="post" action="http://{도메인}/page/bonoga/announ_write.htm">
+						<button type="submit">공지사항 작성</button>
+					</form>
+				<?php endif; ?>
+			</div>
+			<?php if ($ab_cnt!=0) : ?>
+			<div class="view_announ">
+				<table class="announl_table">
+					<thead>
+							<tr>
+									<td class="al_bbtd">제목</td>
+									<td class="al_btd">작성자</td>
+									<td class="al_bbtd">날짜</td>
+							</tr>
+					</thead>
+					<tbody>
+							<?php
+							$a_rows = $bv->select(4);
+							foreach ($a_rows as $announ) {
+							?>
+							<tr>
+									<td class="bl_bbtd">
+											<a href="http://{도메인}/page/bonoga/announ_read.htm?aid=<?php echo $announ->aid ?>">
+													<?php echo $announ->a_title ?>
+											</a>
+									</td>
+									<td class="bl_btd"><?php echo $announ->a_writer ?></td>
+									<td class="bl_bbtd"><?php echo $announ->a_date ?></td>
+							</tr>
+							<?php
+							}
+							?>
+					</tbody>
+				</table>
+			</div>
+			<?php endif; ?>
+			<div class="view_bonoga">
+				<?php if ($bo_cnt == 0) : ?>
+					<h2 class="not_f">사진이 없어요 ㅠㅠ</h2>
+				<?php endif; ?>
+				<?php 
+				$rows = $bv->select(2, $start_num, $sp_max);
+				foreach ($rows as $bono){
+				?>
+				<table class="imgframe_table">
+					<tr class="img_tr">
+						<td colspan="2" class="img_td">
+							<button onclick="img_openPopup('<?php echo $bono->iid; ?>')">
+								<img src="<?php echo $bono->img_path ?>">
+							</button>
+						</td>
+					</tr>
+					<tr class="text_tr">
+						<td class="text_td"><?php echo $bono->img_title ?></td>
+						<td class="text_td"><?php echo $bono->img_writer ?></td>
+					</tr>
+					<tr class="text_tr">
+						<td class="text_td"><?php echo $bono->img_date ?></td>
+						<td class="text_td"><?php echo $bono->img_gb ?></td>
+					</tr>
+					<tr>
+							<td>
+								<form method="post" action="http://{도메인}/php/bonoga/img_gb_good.php">
+									<button type="submit" class="img_gb_btn">
+										<input type="hidden" name="iid" value="<?php echo $bono->iid?>">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile-fill" viewBox="0 0 16 16">
+											<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5M4.285 9.567a.5.5 0 0 1 .683.183A3.5 3.5 0 0 0 8 11.5a3.5 3.5 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.5 4.5 0 0 1 8 12.5a4.5 4.5 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683M10 8c-.552 0-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5S10.552 8 10 8"/>
+										</svg>
+									</button>
+								</form>
+							</td>
+							<td>
+								<form method="post" action="http://{도메인}/php/bonoga/img_gb_bad.php">
+									<button type="submit" class="img_gb_btn">
+										<input type="hidden" name="iid" value="<?php echo $bono->iid?>">
+										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-angry-fill" viewBox="0 0 16 16">
+											<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16M4.053 4.276a.5.5 0 0 1 .67-.223l2 1a.5.5 0 0 1 .166.76c.071.206.111.44.111.687C7 7.328 6.552 8 6 8s-1-.672-1-1.5c0-.408.109-.778.285-1.049l-1.009-.504a.5.5 0 0 1-.223-.67zm.232 8.157a.5.5 0 0 1-.183-.683A4.5 4.5 0 0 1 8 9.5a4.5 4.5 0 0 1 3.898 2.25.5.5 0 1 1-.866.5A3.5 3.5 0 0 0 8 10.5a3.5 3.5 0 0 0-3.032 1.75.5.5 0 0 1-.683.183M10 8c-.552 0-1-.672-1-1.5 0-.247.04-.48.11-.686a.502.502 0 0 1 .166-.761l2-1a.5.5 0 1 1 .448.894l-1.009.504c.176.27.285.64.285 1.049 0 .828-.448 1.5-1 1.5"/>
+										</svg>
+									</button>
+								</form>
+							</td>
+					</tr>
+				</table>
+				<?php
+				}
+				?>
+			</div>
+			<?php if($bo_cnt != 0) : ?>
+			<div class="page_num">
+				<ul>
+						<?php
+								if($page <= 1){
+										echo "<li>처음</li>";
+								}
+								else{
+										echo "<li><a href='?page=1'>처음</a></li>";
+								}
+
+								if($page <= 1){
+								}
+								else{
+										$pre = $list_start-1;
+										if($pre <= 1){
+												$pre = 1;
+										}
+										echo "<li><a href='?page=$pre'>이전</a></li>";
+								}
+
+								for($i=$list_start; $i<=$list_end; $i++){
+										if($page==$i){
+												echo "<li>[$i]</li>";
+										}
+										else{
+												echo "<li><a href='?page=$i'>[$i]</a></li>";
+										}
+								}
+
+								if($list_cnt >= $total_list){
+								}
+								else{
+										$next = $list_end+1;
+										if($next >= $total_page){
+												$next = $total_page;
+										}
+										echo "<li><a href='?page=$next'>다음</a></li>";
+								}
+
+								if($page >= $total_page){
+										echo "<li>마지막</li>";
+								}
+								else{
+										echo "<li><a href='?page=$total_page'>마지막</a></li>"; 
+								}
+						?>
+				</ul>
+			</div>
+			<br>
+			<div class="search_div">
+				<form class="for_search" method="get" action="http://{도메인}/page/bonoga/find_gallery.htm">
+						<input type="hidden" name="page" value="1">
+						<select name="condition">
+								<option value="1">제목</option>
+								<option value="2">작성자</option>
+						</select>
+						<input type="text" name="for_search" placeholder="검색할 내용">
+						<button type="submit">검색</button>
+				</form>
+			</div>
+			<? endif; ?>
+		</div>
+	</div>
+	<?php $con->close(); ?>
+</body>

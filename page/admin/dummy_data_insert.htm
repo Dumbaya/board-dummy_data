@@ -1,0 +1,40 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/admin.css">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Test Data Insert</title>
+</head>
+
+<body>
+	<div class="backgc_div">
+		<div class="admin_div">
+			<h1>테스트 데이터 넣기</h1>
+			<form action="http://{도메인}/page/admin/test_data_insert.htm">
+				<button class="turn_btn" type="submit">이전</button>
+			</form>
+			<hr>
+			
+			<form method="post" action="http://{도메인}/php/admin/dummy_data_insert.php">
+				<table>
+					<tr>
+						<td><input type="radio" id="mode" name="mode" value="1" checked>mode(1) USER</td>
+						<td><input type="radio" id="mode" name="mode" value="2">mode(2) BOARD</td>
+						<td><input type="radio" id="mode" name="mode" value="3">mode(3) BOARD_COMMENT</td>
+					</tr>
+				</table>
+				<div class="form-floating mb-3">
+					<input type="text" class="form-control" id="floatingInput" name="count" placeholder="얼마나 넣을지 정하기" required><label for="floatingInput">얼마나 넣을지 정하기</label>
+				</div>
+				<button class="admint_btn" type="submit">더미 데이터 삽입</button>
+			</form>
+		</div>
+	</div>
+</body>

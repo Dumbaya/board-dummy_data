@@ -1,0 +1,48 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/session.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.boardVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	if(isset($_SESSION['user_id'])==false){
+		echo "<script>alert('로그인 후 이용해주세요');</script>";
+		echo "<script>window.self.close(); window.opener.location='http://{도메인}/page/user/login.htm?tmp_num=1';</script>";
+	}
+
+	$tmp_num = $_GET['tmp_num'];
+	$number = $_GET['bcid'];
+	$group_id = $_GET['group_id'];
+	$user_id = $_SESSION['user_id'];
+
+	$bv = new boardVO();
+	$bv->setbcid($number);
+	$row = $bv->select(19);
+	$br = $row[0];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Board Ccomment Write</title>
+</head>
+<body class="bcu_body">
+		<div class="bcu_div">
+			<h1>대댓글 작성</h1>
+			<form class="bcut_form" onclick="self.close()">
+				<button type="submit">이전</button>
+			</form>
+			<form class="bcu_form" method="post" action="http://{도메인}/php/board/board_ccomment_write.php">
+				<input type="hidden" name="group_id" value="<?php echo $group_id ?>">
+				<input type="hidden" name="bcid" value="<?php echo $number ?>">
+				<input type="hidden" name="tmp_num_mb" value="<?php echo $tmp_num ?>">
+				<input type="text" id="bcc_comment" name="bcc_comment" placeholder="대댓글 작성란" required>
+				<input type="hidden" id="f_bid" name="f_bid" value="<?php echo $br->f_bid ?>">
+				<br>
+				<button type="submit">작성하기</button>
+			</form>
+		</div>
+</body>

@@ -1,0 +1,60 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/session.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.bonogaVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$user_nickname=$_SESSION['user_nickname'];
+	$iid=$_GET['iid'];
+
+	$bv = new bonogaVO();
+	
+	$bv->setiid($iid);
+	$row = $bv->select(5);
+	$bono = $row[0];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/bonoga.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Img Popup</title>
+</head>
+
+<body class="backgc_body_ip">
+	<div class="ip_div">
+		<form class="ipc_form" onclick="self.close()">
+			<button type="submit">닫기</button>
+		</form>
+		<img class="ip_img" src="<?php echo $bono->img_path?>">
+		<table class="ip_table">
+			<tr class="text_tr">
+				<td class="text_td"><?php echo $bono->img_title ?></td>
+				<td class="text_td"><?php echo $bono->img_writer ?></td>
+			</tr>
+			<tr class="text_tr">
+				<td class="text_td"><?php echo $bono->img_date ?></td>
+				<td class="text_td"><?php echo $bono->img_gb ?></td>
+			</tr>
+			<?php if(strcmp($_SESSION['user_nickname'], $bono->img_writer)==0 || $_SESSION['user_role']==2): ?>
+			<tr>
+				<td>
+					<form class="ip_updf" method="post" action="http://{도메인}/php/bonoga/img_update_before.php">
+						<input type="hidden" name="iid" value="<?php echo $iid ?>">
+						<button type="submit">수정하기</button>
+					</form>
+				</td>
+				<td>
+					<form class="ip_updf" method="post" action="http://{도메인}/php/bonoga/img_delete.php">
+						<input type="hidden" name="iid" value="<?php echo $iid ?>">
+						<button type="submit">삭제하기</button>
+					</form>
+				</td>
+			</tr>
+			<?php endif; ?>
+		</table>
+	</div>
+	<?php $con->close(); ?>
+</body>

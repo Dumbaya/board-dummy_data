@@ -1,0 +1,194 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.userVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.boardVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$user_nickname=$_SESSION['user_nickname'];
+
+	$uv = new userVO();
+	$bv = new boardVO();
+
+	$uv->setuser_nickname($user_nickname);
+	$f_search=array("user_nickname" => $user_nickname);
+	$row = $uv->selectList($f_search);
+	$userVO = $row[0];
+	$uid = $userVO->uid;
+	
+	$bv->setbc_writer($user_nickname);
+	$tmp_row = $bv->select(11);
+	$bc_num = $tmp_row[0]->{'COUNT(bcid)'};
+
+	if(isset($_GET['page'])){
+		$page=$_GET['page'];
+	}
+	else{
+		$page=1;
+	}
+
+	$sp_max = 5;//한 페이지에 보여줄 개수
+	$list_n = 5;//한 번에 리스트 몇개 보여줄지
+
+	$list_cnt = ceil($page/$list_n);
+	$list_start = (($list_cnt -1) * $list_n) + 1;
+	$list_end = $list_start + $list_n - 1;
+
+	$total_page = ceil($bc_num/$sp_max);
+	if($list_end > $total_page) $list_end = $total_page;
+	$total_list = ceil($total_page/$list_n);
+	$start_num = ($page-1) * $sp_max;
+?>
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="EUC-KR" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<link
+			rel="stylesheet"
+			href="http://{도메인}/css/common.css?after"
+		/>
+		<link
+			rel="stylesheet"
+			href="http://{도메인}/css/myaccount.css?after"
+		/>
+		<link
+			rel="stylesheet"
+			href="http://{도메인}/css/board.css?after"
+		/>
+		<script
+			type="text/javascript"
+			src="http://{도메인}/jquery/jquery-3.7.1.min.js"
+		></script>
+		<title>My Board Write About</title>
+	</head>
+
+	<body>
+		<div class="backgc_div">
+			<div class="uwba_div">
+				<h1>내가 쓴 댓글</h1>
+				<form method="post" action="http://{도메인}/page/user/myaccount.htm?uid=<?php echo $uid ?>">
+					<button class="turn_btn" type="submit">돌아가기</button>
+				</form>
+				<?php if ($bc_num == 0) : ?>
+                        <h2>댓글이 없어요 ㅠㅠ</h2>
+        <?php else: ?>
+				<div>
+					<table class="uwbca_table">
+						<thead>
+							<tr class="uwbca_tr">
+								<td class="uwbca_bbtd">게시글 제목</td>
+								<td class="uwbca_bbtd">댓글 내용</td>
+								<td class="uwbca_bbtd">댓글 작성자</td>
+								<td class="uwbca_bbtd">댓글 작성 날짜</td>
+								<td class="uwbca_bbtd">댓글 추천 수</td>
+							</tr>
+						</thead>
+						<tbody>
+							<?php
+								$bc_rows = $bv->select(18, $start_num, $sp_max);
+								foreach ($bc_rows as $bvcr) {
+									$bv->setbid($bvcr->f_bid);
+									$board_rows = $bv->select(8);
+							?>
+							<tr class="uwbca_tr">
+								<td class="uwbca_bbtd">
+									<!--게시글 제목-->
+									<a
+										href="http://{도메인}/page/board/board_read.htm?page=1&bid=<?php echo $bvcr->f_bid ?>&tmp_num=3"
+									>
+										<?php echo $board_rows[0]->board_title ?>
+									</a>
+								</td>
+								<td class="uwbca_bbtd"><?php echo $bvcr->bc_comment ?></td>
+								<!--댓글 내용-->
+								<td class="uwbca_bbtd"><?php echo $bvcr->bc_writer ?></td>
+								<!--댓글 작성자-->
+								<td class="uwbca_bbtd"><?php echo $bvcr->bc_date ?></td>
+								<!--댓글 작성 날짜-->
+								<td class="uwbca_bbtd"><?php echo $bvcr->bc_gb ?></td>
+								<!--댓글 추천 수-->
+								
+								<td>
+									<?php if(strcmp($_SESSION['user_nickname'], $bvcr->bc_writer)==0 || $_SESSION['user_role']==2): ?>
+									<form
+										class="delete_board"
+										method="post"
+										action="http://{도메인}/php/board/board_comment_delete.php?bid=<?php echo $board_rows->bid ?>"
+									>
+										<input type="hidden" name="tmp_num" value="1">
+										<input type="hidden" name="bcid" value="<?php echo $bvcr->bcid ?>">
+										<button type="submit">댓글 삭제</button>
+									</form>
+									<?php endif; ?>
+								</td>
+							</tr>
+							<?php
+								};
+						?>
+						</tbody>
+					</table>
+				</div>
+				<div class="page_num">
+					<ul>
+							<?php
+									if($page <= 1){
+											echo "<li>처음</li>";
+									}
+									else{
+											echo "<li><a href='?page=1'>처음</a></li>";
+									}
+
+									if($page <= 1){
+									}
+									else{
+											$pre = $list_start-1;
+											if($pre <= 1){
+													$pre = 1;
+											}
+											echo "<li><a href='?page=$pre'>이전</a></li>";
+									}
+
+									for($i=$list_start; $i<=$list_end; $i++){
+											if($page==$i){
+													echo "<li>[$i]</li>";
+											}
+											else{
+													echo "<li><a href='?page=$i'>[$i]</a></li>";
+											}
+									}
+
+									if($list_cnt >= $total_list){
+									}
+									else{
+											$next = $list_end+1;
+											if($next >= $total_page){
+													$next = $total_page;
+											}
+											echo "<li><a href='?page=$next'>다음</a></li>";
+									}
+
+									if($page >= $total_page){
+											echo "<li>마지막</li>";
+									}
+									else{
+											echo "<li><a href='?page=$total_page'>마지막</a></li>"; 
+									}
+							?>
+					</ul>
+				</div>
+				<br>
+				<div class="search_div">
+					<form class="for_search" method="get" action="http://{도메인}/page/user/find_user_writebc_about.htm">
+						<input type="hidden" name="page" value="1">
+						<select name="condition">
+							<option value="1">내용</option>
+						</select>
+						<input type="text" name="for_search" placeholder="검색할 내용">
+						<button type="submit">검색</button>
+					</form>
+				</div>
+			</div>
+		</div>
+		<?php endif;?>
+	</body>
+</html>

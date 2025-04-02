@@ -1,0 +1,153 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.userVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.bonogaVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$user_nickname=$_SESSION['user_nickname'];
+
+	$uv = new userVO();
+	$bv = new bonogaVO();
+
+	$uv->setuser_nickname($user_nickname);
+	$f_search=array("user_nickname" => $user_nickname);
+	$row = $uv->selectList($f_search);
+	$userVO = $row[0];
+	$uid = $userVO->uid;
+
+	$bv->setimg_writer($user_nickname);
+	$bo_cnt = $bv->select(8);
+
+	if(isset($_GET['page'])){
+		$page=$_GET['page'];
+	}
+	else{
+			$page=1;
+	}
+
+	$sp_max = 4;//한 페이지에 보여줄 개수
+	$list_n = 5;//한 번에 리스트 몇개 보여줄지
+
+	$list_cnt = ceil($page/$list_n);
+	$list_start = (($list_cnt -1) * $list_n) + 1;
+	$list_end = $list_start + $list_n - 1;
+
+	$total_page = ceil($bo_cnt/$sp_max);
+	if($list_end > $total_page) $list_end = $total_page;
+	$total_list = ceil($total_page/$list_n);
+	$start_num = ($page-1) * $sp_max;
+?>
+<!DOCTYPE html>
+<html lang="ko">
+	<head>
+		<meta charset="EUC-KR" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="../../js/bonoga.js"></script>
+		<link
+			rel="stylesheet"
+			href="http://{도메인}/css/common.css?after"
+		/>
+		<link
+			rel="stylesheet"
+			href="http://{도메인}/css/myaccount.css?after"
+		/>
+		<link
+			rel="stylesheet"
+			href="http://{도메인}/css/bonoga.css?after"
+		/>
+		<script
+			type="text/javascript"
+			src="http://{도메인}/jquery/jquery-3.7.1.min.js"
+		></script>
+		<title>My Board Write About</title>
+	</head>
+
+	<body>
+		<div class="backgc_div">
+			<div class="uwba_div">
+				<h1>내가 작성한 앨범</h1>
+				<form method="post" action="http://{도메인}/page/user/myaccount.htm?uid=<?php echo $uid ?>">
+					<button class="turn_btn" type="submit">돌아가기</button>
+				</form>
+				<?php if ($bo_cnt == 0) : ?>
+                        <h2>앨범이 없어요 ㅠㅠ</h2>
+        <?php else: ?>
+				<div class="view_bonoga">
+					<?php 
+					$rows = $bv->select(9, $start_num, $sp_max );
+					foreach ($rows as $bonoga){
+					?>
+					<table class="imgframe_table">
+						<tr class="img_tr">
+							<td colspan="2" class="img_td">
+								<button onclick="img_openPopup('<?php echo $bonoga->iid; ?>')">
+									<img src="<?php echo $bonoga->img_path ?>">
+								</button>
+							</td>
+						</tr>
+						<tr class="text_tr">
+							<td class="text_td"><?php echo $bonoga->img_title ?></td>
+							<td class="text_td"><?php echo $bonoga->img_writer ?></td>
+						</tr>
+						<tr class="text_tr">
+							<td class="text_td"><?php echo $bonoga->img_date ?></td>
+							<td class="text_td"><?php echo $bonoga->img_gb ?></td>
+						</tr>
+					</table>
+					<?php
+					}
+					?>
+				</div>
+				<div class="page_num">
+					<ul>
+							<?php
+									if($page <= 1){
+											echo "<li>처음</li>";
+									}
+									else{
+											echo "<li><a href='?page=1'>처음</a></li>";
+									}
+
+									if($page <= 1){
+									}
+									else{
+											$pre = $list_start-1;
+											if($pre <= 1){
+													$pre = 1;
+											}
+											echo "<li><a href='?page=$pre'>이전</a></li>";
+									}
+
+									for($i=$list_start; $i<=$list_end; $i++){
+											if($page==$i){
+													echo "<li>[$i]</li>";
+											}
+											else{
+													echo "<li><a href='?page=$i'>[$i]</a></li>";
+											}
+									}
+
+									if($list_cnt >= $total_list){
+									}
+									else{
+											$next = $list_end+1;
+											if($next >= $total_page){
+													$next = $total_page;
+											}
+											echo "<li><a href='?page=$next'>다음</a></li>";
+									}
+
+									if($page >= $total_page){
+											echo "<li>마지막</li>";
+									}
+									else{
+											echo "<li><a href='?page=$total_page'>마지막</a></li>"; 
+									}
+							?>
+					</ul>
+			</div>
+			</div>
+		</div>
+		<?php endif;?>
+	</body>
+</html>

@@ -1,0 +1,92 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.adminVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$uid = $_GET['uid'];
+	
+	$av = new adminVO();
+	$av->setuid($uid);
+	$row = $av->selectUser(3);
+	$adminVO = $row[0];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/admin.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>User Account</title>
+</head>
+
+<body>
+	<div class="backgc_div">
+		<div class="ui_div">
+			<h1>유저 정보</h1>
+			<form action="http://{도메인}/page/admin/user_account_info.htm">
+				<button class="turn_btn" type="submit">이전</button>
+			</form>
+			<table class="ui_table">
+				<tr class="ms_tr">
+					<td>uid</td>
+					<td><?php echo $adminVO->uid ?></td>
+				</tr>
+				<tr class="ms_tr">
+					<td>아이디</td>
+					<td><?php echo $adminVO->user_id ?></td>
+					<td>
+						<form class="ms" method="post" action="http://{도메인}/page/admin/change_id.htm?uid=<?php echo $uid ?>">
+							<button type="submit">아이디 변경하기</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="ms_tr">
+					<td>닉네임</td>
+					<td><?php echo $adminVO->user_nickname ?></td>
+					<td>
+						<form class="ms" method="post" action="http://{도메인}/page/admin/change_nickname.htm?uid=<?php echo $uid ?>">
+							<button type="submit">닉네임 변경하기</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="ms_tr">
+					<td>이메일</td>
+					<td><?php echo $adminVO->user_email ?></td>
+					<td>
+						<form class="ms" method="post" action="http://{도메인}/page/admin/change_email.htm?uid=<?php echo $uid ?>">
+							<button type="submit">이메일 변경하기</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="ms_tr">
+					<td>권한</td>
+					<td><?php echo $adminVO->user_role ?></td>
+					<td>
+						<form class="ms" method="post" action="http://{도메인}/page/admin/change_role.htm?uid=<?php echo $uid ?>">
+							<button type="submit">권한 변경하기</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="mb_tr">
+					<td colspan="3">
+						<form class="mb" method="post" action="http://{도메인}/page/admin/change_password.htm?uid=<?php echo $uid ?>">
+							<button type="submit">비밀번호 변경하기</button>
+						</form>
+					</td>
+				</tr>
+				<?php if($adminVO->user_role!=2): ?>
+					<tr class="mb_tr">
+						<td colspan="3">
+							<form class="mb" method="post" action="http://{도메인}/php/admin/delete_account.php?uid=<?php echo $uid ?>">
+								<button type="submit">회원 탈퇴하기</button>
+							</form>
+						</td>
+					</tr>
+				<?php endif; ?>
+			</table>
+		</div>
+	</div>
+</body>

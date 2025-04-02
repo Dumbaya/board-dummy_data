@@ -1,0 +1,48 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.bonogaVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$iid = $_GET['iid'];
+
+	$bv = new bonogaVO();
+	
+	$bv->setiid($iid);
+	$row = $bv->select(5);
+	$bono = $row[0];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/bonoga.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Img Update</title>
+</head>
+<body>
+	<div class="backgc_div_iup">
+		<div class="img_up_div">
+			<h1>이미지 수정</h1>
+			<form class="gogal_form" action="http://{도메인}/page/bonoga/gallery.htm">
+				<button type="submit">이전</button>
+			</form>
+
+			<h3>현재 사진</h3>
+			<img class="img_up" src="<?php echo $bono->img_path?>">
+
+			<form class="img_upf" method="post" action="http://{도메인}/php/bonoga/img_update_after.php" enctype="multipart/form-data">
+				<input type="hidden" name="iid" value="<?php echo $iid ?>">
+				<label>이미지</label>
+				<input type="file" class="imgupf_img" accept="image/*" name="img" required>
+				<br>
+				<label>제목</label>
+				<input type="text" class="imgupf_title" name="img_title" value="<?php echo $bono->img_title ?>">
+				<br>
+				<button type="submit">수정하기</button>
+			</form>
+		</div>
+	</div>
+</body>

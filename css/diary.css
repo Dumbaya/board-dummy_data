@@ -1,0 +1,144 @@
+.dl_div, .fp_div{
+	padding-top: 50px;
+	text-align: center;
+	margin: auto;
+}
+
+.dl_table, .dr_table{
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+.dl_bbtd, .dr_bbtd{
+	width: 200px;
+}
+.dl_btd{
+	width: 150px;
+}
+.dr_btr{
+	height: 100px;
+}
+
+.page_num{
+	font-size: 14px;
+	margin-left: 860px;
+	margin-top:30px;
+}
+.page_num ul li {
+	display: flex;
+	float: left;
+	margin-left: 10px;
+	text-align: center;
+}
+
+.for_search{
+  margin: 0 auto 10px;
+  padding: 30px;
+}
+.search_div{
+	margin-top:10px;
+	text-align: center;
+}
+.for_search input{
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 300px;
+	height: 40px;
+  border: 0;
+  padding: 15px;
+  font-size: 14px;
+}
+.dwl_f button, .for_search button{
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 130px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+.delete_diary button{
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 100px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.dr_div, .diaryu_div ,.diaryw_div{
+	padding-top: 30px;
+	text-align: center;
+}
+.draction_div{
+	display: flex;
+}
+.dra_form{
+	margin-left: auto;
+	margin-right: auto;
+}
+.dra_form button, .dut_form button, .dwt_form button{
+	font-family: "Roboto", sans-serif;
+	outline: 0;
+	background: #808080;
+	margin-top: 30px;
+	margin-bottom: 10px;
+	width: 100px;
+	height: 30px;
+	border: 0;
+	color: #ffffff;
+	font-size: 14px;
+}
+
+.diary_update_form input, .diary_write_form input{
+	margin-bottom: 30px;
+	text-align: center;
+}
+.diary_update_form button, .diary_write_form button{
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 150px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+.fp_form input{
+	text-align: center;
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+	margin-top: 30px;
+  width: 300px;
+	height: 40px;
+  border: 0;
+  padding: 15px;
+  font-size: 14px;
+}
+.fp_form button{
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+	margin-top: 30px;
+  width: 150px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+.fp_form{
+	position: relative;
+  max-width: 360px;
+  margin: 0 auto 10px;
+  padding: 30px;
+}
+#diary_body{
+	width:500px;
+	height:400px;
+}

@@ -1,0 +1,130 @@
+<?php
+	include($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.adminVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+	$current_page = basename($_SERVER['PHP_SELF']);
+	$av = new adminVO();
+
+	$tmp_row = $av->selectUser(4);
+	$cnt = $tmp_row[0]->{'COUNT(uid)'};
+
+	if(isset($_GET['page'])){
+		$page=$_GET['page'];
+	}
+	else{
+		$page=1;
+	}
+	$sp_max = 10;
+	$list_n = 10;
+
+	$current_page_num = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+    $last_uid = isset($_GET['last_uid']) ? $_GET['last_uid'] : $cnt;
+
+    if ($last_uid == $cnt) {
+        $rows = $av->selectUser(1);
+    } else {
+        $av->setlast_uid($last_uid);
+        $rows = $av->selectUser(5);
+    }
+
+    $next_last_uid = !empty($rows) ? end($rows)->uid-1 : 0;
+    $prev_last_uid = isset($_GET['last_uid']) ? min($_GET['last_uid'] + $sp_max, $cnt) : $cnt;
+
+    $total_page = ceil($cnt / $sp_max);
+    $list_cnt = ceil($current_page_num / $list_n);
+    $list_start = (($list_cnt - 1) * $list_n) + 1;
+    $list_end = min($list_start + $list_n - 1, $total_page);
+?>
+<!DOCTYPE html>
+<html lang="ko">
+    <script src="../../js/login.js"></script>
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/admin.css">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>user_account_info</title>
+</head>
+<body class="backg_body">
+	<div class="backgc_div">
+		<div class="user_account_info">
+			<h1>회원 정보 목록</h1>
+			<form action="http://{도메인}/page/admin/admin_page.htm">
+				<button class="turn_btn" type="submit">이전</button>
+			</form>
+			<?php if ($cnt == 0) : ?>
+				<h2>가입자가 없어요 ㅠㅠ</h2>
+			<?php else: ?>
+				<table class="uai_table">
+					<thead>
+						<tr class="ms_tr">
+							<td class="w_td">uid</td>
+							<td class="w_tbd">유저</td>
+							<td class="w_td">닉네임</td>
+							<td class="wem_td">이메일</td>
+							<td class="w_td">권한</td>
+						</tr>
+					</thead>
+					<tbody>
+						<?php
+								foreach ($rows as $adminVO) {
+						?>
+						<tr class="ms_tr">
+								<td class="w_td"><?php echo $adminVO->uid ?></td>
+								<td class="w_tbd">
+									<form method="post" action="http://{도메인}/page/admin/user_info.htm?uid=<?php echo $adminVO->uid ?>">
+										<button class="user_btn" type="submit"><?php echo $adminVO->user_id ?></button>
+									</form>
+								</td>
+								<td class="w_td"><?php echo $adminVO->user_nickname ?></td>
+								<td class="wem_td"><?php echo $adminVO->user_email ?></td>
+								<td class="w_td"><?php echo $adminVO->user_role ?></td>
+						</tr>
+						<?php
+								};
+						?>
+					</tbody>
+				</table>
+			<?php endif;?>
+		</div>
+		<div class="page_num">
+			<ul>
+				<?php
+					if ($current_page_num != 0){
+						echo "<li><a href='{$current_page}?page=1&last_uid=$cnt'>처음</a></li>";
+					}
+
+					if($current_page_num > $list_n){
+						$pre = $list_start - 1;
+						$prev_last_uid = $cnt - (($list_start - 2) * $sp_max);
+						echo "<li><a href='{$current_page}?page=$pre&last_uid=$prev_last_uid'>이전</a></li>";
+					}
+
+					for($i = $list_start; $i <= $list_end; $i++){
+						$page_last_uid = max($cnt - ($i - 1) * $sp_max, 1);
+						if ($page_last_uid < 1) $page_last_uid = 1;
+
+						if($i == $current_page_num){
+							echo "<li><b>[$i]</b></li>";
+						}
+						else{
+							echo "<li><a href='{$current_page}?page=$i&last_uid=$page_last_uid'>[$i]</a></li>";
+						}
+					}
+
+					if($current_page_num < $total_page){
+						$next = $list_end + 1;
+						$next_last_uid = $cnt - ($list_end * $sp_max);
+						echo "<li><a href='{$current_page}?page=$next&last_uid=$next_last_uid'>다음</a></li>";
+					}
+
+					if($current_page_num != $total_page){
+						$end_bid = $cnt%$sp_max?:10;
+						echo "<li><a href='{$current_page}?page=$total_page&last_uid=$end_bid'>마지막</a></li>";
+					}
+				?>
+			</ul>
+		</div>
+	</div>
+</body>

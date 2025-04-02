@@ -1,0 +1,67 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.diaryVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$dlid = $_GET['dlid'];
+	$user_id = $_SESSION['user_id'];
+	
+	$dv = new diaryVO();
+
+	$dv->setdlid($dlid);
+
+	$row = $dv->select(5);
+	$dr = $row[0];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+	<script src="../../js/board.js"></script>
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/diary.css">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Diary Read</title>
+</head>
+<body class="backg_body">
+	<div class="backgc_div_r">
+		<div class="dr_div">
+			<h1>일기</h1>
+			<div class="draction_div">
+					<form class="dra_form" method="post" name="move_back_form" action="http://{도메인}/page/diary/diary_list.htm?did=<?php echo $dr->f_did ?>">
+						<button type="submit">이전</button>
+					</form>
+					<form class="dra_form" method="post" action="http://{도메인}/page/diary/diary_update.htm?dlid=<?php echo $dlid ?>">
+						<button type="submit">수정</button>
+					</form>
+					<form class="dra_form" method="post" action="http://{도메인}/php/diary/diary_delete.php?dlid=<?php echo $dlid ?>&did=<?php echo $dr->f_did ?>">
+						<button type="submit">삭제</button>
+					</form>
+			</div>
+		
+			<div class="diary_read">
+				<table class="dr_table">
+					<tr class="dr_btr">
+						<td class="dr_bbtd">제목</td>
+						<td class="dr_bbtd"><?php echo $dr->dl_title ?></td>
+					</tr>
+					<tr class="dr_btr">
+						<td class="dr_bbtd">작성 날짜</td>
+						<td class="dr_bbtd"><?php echo $dr->dl_date ?></td>
+					</tr>
+					<tr class="dr_btr">
+						<td>작성 내용</td>
+						<td><?php echo $dr->dl_body ?></td>
+					</tr>
+					<?php if($dr->dl_imgp != '') : ?>
+					<tr class="dr_btr">
+						<td>이미지</td>
+						<td><img src="<?php echo $dr->dl_imgp ?>"></td>
+					</tr>
+					<?php endif;?>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>

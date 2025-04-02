@@ -1,0 +1,35 @@
+<?php
+    include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+		$f_did = $_POST['f_did'];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/diary.css">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Diary Write</title>
+</head>
+<body class="backg_body">
+	<div class="backgc_div">
+		<div class="diaryw_div">
+			<h1>일기 쓰기</h1>
+			<form class="dwt_form" method="post" action="http://{도메인}/page/diary/diary_list.htm?did=<?php echo $f_did ?>">
+				<button type="submit">이전</button>
+			</form>
+			<form class="diary_write_form" name="diary_write_form" method="post" action="http://{도메인}/php/diary/diary_write.php" enctype="multipart/form-data">
+				제목<br><input type="text" id="diary_title" name="diary_title" required>
+				<br>
+				내용<br><textarea id="diary_body" name="diary_body"></textarea>
+				<br>
+				<input type="file" class="imgf_img" accept="image/*" name="diary_img">
+				<br>
+				<input type="hidden" name="f_did" value="<?php echo $f_did ?>">
+				<button type="submit">글쓰기</button>
+			</form>
+		</div>
+	</div>
+</body>

@@ -1,0 +1,45 @@
+<?php
+    include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+
+		if(isset($_SESSION['user_id'])==false){
+			echo "<script>alert('로그인 후 이용해주세요');</script>";
+			echo "<script>window.location.href='http://{도메인}/page/user/login.htm?tmp_num=1';</script>";
+		}
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/board.css">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Board Write</title>
+</head>
+<body class="backg_body">
+	<div class="backgc_div">
+		<div class="boardw_div">
+			<h1>게시판 글쓰기</h1>
+			<form class="bwt_form" action="http://{도메인}/page/board/board.htm">
+				<button type="submit">이전</button>
+			</form>
+			
+				<div class="board_write">
+					<form class="board_write_form" name="board_write_form" method="post" action="http://{도메인}/php/board/board_write.php" enctype="multipart/form-data">
+						<div class="board_wtitle">
+							<input type="text" id="board_title" name="board_title" placeholder="제목을 입력하세요." required>
+						</div>
+						<div class="board_wbody">
+							<textarea id="board_body" name="board_body" placeholder="내용을 입력하세요." required></textarea>
+							<input type="file" class="imgf_img" accept="image/*" name="board_img">
+						</div>
+						<div class="board_w">
+							<button type="submit">글쓰기</button>
+						</div>
+					</form>
+				</div>
+			
+		</div>
+	</div>
+</body>

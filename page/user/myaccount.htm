@@ -1,0 +1,93 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.userVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$uid = $_GET['uid'];
+	$user_nickname=$_SESSION['user_nickname'];
+
+	$uv = new userVO();
+	$uv->user_nickname_con($user_nickname);
+	$f_search=array("user_nickname" => $user_nickname);
+	$row = $uv->selectList($f_search);
+	$userVO = $row[0];
+	$uid = $userVO->uid;
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css?after">
+	<link rel="stylesheet" href="http://{도메인}/css/myaccount.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>My Account</title>
+</head>
+
+<body>
+	<div class="backgc_div">
+		<div class="myacc_div">
+			<h1>내 정보</h1>
+			<table class="myacc_table">
+				<tr class="ms_tr">
+					<td class="w_td">아이디</td>
+					<td class="info_td"><?php echo $userVO->user_id ?></td>
+				</tr>
+				<tr class="ms_tr">
+					<td class="w_td">닉네임</td>
+					<td class="info_td"><?php echo $userVO->user_nickname ?></td>
+					<td class="s_btn">
+						<form class="ms" method="post" action="http://{도메인}/page/user/change_nickname.htm?uid=<?php echo $uid ?>">
+							<button type="submit">닉네임 변경하기</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="ms_tr">
+					<td class="w_td">이메일</td>
+					<td class="info_td"><?php echo $userVO->user_email ?></td>
+					<td class="s_btn">
+						<form class="ms" method="post" action="http://{도메인}/page/user/change_email.htm?uid=<?php echo $uid ?>">
+							<button type="submit">이메일 변경하기</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="mb_tr">
+					<td colspan="3">
+						<form class="mb" method="post" action="http://{도메인}/page/user/user_writeboard_about.htm">
+							<button type="submit">내가 쓴 게시글</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="mb_tr">
+					<td colspan="3">
+						<form class="mb" method="post" action="http://{도메인}/page/user/user_writebc_about.htm">
+							<button type="submit">내가 쓴 댓글</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="mb_tr">
+					<td colspan="3">
+						<form class="mb" method="post" action="http://{도메인}/page/user/user_writeimg_about.htm">
+							<button type="submit">내가 작성한 앨범</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="mb_tr">
+					<td colspan="3">
+						<form class="mb" method="post" action="http://{도메인}/page/user/change_password.htm?uid=<?php echo $uid ?>">
+							<button type="submit">비밀번호 변경하기</button>
+						</form>
+					</td>
+				</tr>
+				<tr class="mb_tr">
+					<td colspan="3">
+						<form class="mb" method="post" action="http://{도메인}/php/user/delete_account.php?uid=<?php echo $uid ?>">
+							<button type="submit">회원 탈퇴하기</button>
+						</form>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>

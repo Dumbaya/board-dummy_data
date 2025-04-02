@@ -1,0 +1,51 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+
+	$tmp_num = $_GET['tmp_num'];
+	if($tmp_num==''){
+		$tmp_num=0;
+	}
+	$tmp_num_mb = $_GET['tmp_num_mb'];
+	
+	$bid = $_GET['bid'];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/login.css">
+	<script type="text/javascript" src="http://{도메인}/bootstrap/js/bootstrap.min.js"></script>
+	<title>Login</title>
+</head>
+
+<body>
+	<div class="backgc_div">
+		<div class="login_div">
+			<form class="login_form" method="post" action="http://{도메인}/php/user/login.php">
+					<input type="hidden" name="tmp_num" value="<?php echo $tmp_num ?>">
+					<input type="hidden" name="tmp_num_mb" value="<?php echo $tmp_num_mb ?>">
+					<input type="hidden" name="bid" value="<?php echo $bid ?>">
+					<div class="form-floating mb-3">
+						<input type="text" class="form-control" id="floatingInput" name="user_id" placeholder="아이디" required><label for="floatingInput">아이디</label>
+					</div>
+					<div class="form-floating mb-3">
+						<input type="password" class="form-control" id="floatingInput" name="user_password" placeholder="비밀번호" ><label for="floatingInput">비밀번호</label>
+					</div>
+					<button type="submit">로그인</button>
+			</form>
+
+			<form class="find_idf" method="post" action="http://{도메인}/page/user/find_id.htm">
+				<button type="submit">아이디 찾기</button>
+			</form>
+
+			<form class="find_pwdf" method="post" action="http://{도메인}/page/user/find_password_before.htm">
+				<button type="submit">비밀번호 찾기</button>
+			</form>
+
+			<a class="move_su" href="http://{도메인}/page/user/register.htm">계정이 없으신가요?</a>
+		</div>
+	</div>
+</body>

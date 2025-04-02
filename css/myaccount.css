@@ -1,0 +1,116 @@
+.myacc_div, .uwba_div, .uwbca_div{
+	padding-top: 150px;
+	text-align: center;
+}
+
+.cg_div{
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+	text-align: center;
+}
+
+.myacc_table, .cg_table, .userpopup_table, .uwba_table, .uwbca_table{
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.ms_tr{
+	height: 50px;
+}
+
+.info_td{
+	width: 100px;
+}
+
+.w_td{
+	width: 100px;
+}
+
+.s_btn{
+	width: 200px;
+}
+
+.ms button, .cg_btn, .nn_form button, .ub_form button{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 180px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.mb button{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 300px;
+	height: 50px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.mb_tr{
+	height: 70px;
+}
+
+.cg_table tr{
+  height: 50px;
+}
+
+.turn_btn{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  margin-top: 30px;
+  width: 100px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.userpopup_body, .upcp_body{
+  text-align: center;
+  background-color: #dfd4d4;
+}
+.upc_form{
+  display: flex;
+}
+.upc_form button, .check_form button{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  margin-top: 30px;
+  width: 50px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+.up_tr{
+  height:50px;
+}
+.up_td{
+  width: 100px;
+}
+.upinfo_td{
+  width: 150px;
+}
+
+.uwbca_bbtd{
+  width: 150px;
+}
+.uwbca_btd{
+  width: 100px;
+}
+.uwbca_std{
+  width: 50px;
+}
+.uwbca_tr{
+  height: 50px;
+}

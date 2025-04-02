@@ -1,0 +1,138 @@
+<?php
+include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.userVO.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.boardVO.php');
+include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+// DB 연결 (PDO)
+$pdo = new PDO("mysql:host=mysql_test;dbname=study_board;charset=utf8mb4", "root", "root");
+
+// 세션에서 사용자 닉네임 가져오기
+$user_nickname = $_SESSION['user_nickname'];
+
+// 한 페이지당 표시할 개수
+$sp_max = 5;
+
+// 현재 페이지 번호 및 마지막 날짜 값 가져오기
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+$last_date = isset($_GET['last_date']) ? $_GET['last_date'] : null;
+
+// 첫 페이지면 최신 댓글부터 가져오기
+if ($page == 1) {
+    $query = "SELECT * FROM board_comment 
+              WHERE bc_writer = :bc_writer 
+              ORDER BY bc_date DESC 
+              LIMIT :limit";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindValue(":bc_writer", $user_nickname, PDO::PARAM_STR);
+    $stmt->bindValue(":limit", $sp_max, PDO::PARAM_INT);
+} else {
+    // 이전 페이지의 마지막 날짜보다 오래된 데이터 가져오기
+    $query = "SELECT * FROM board_comment 
+              WHERE bc_writer = :bc_writer 
+              AND bc_date < :last_date 
+              ORDER BY bc_date DESC 
+              LIMIT :limit";
+    $stmt = $pdo->prepare($query);
+    $stmt->bindValue(":bc_writer", $user_nickname, PDO::PARAM_STR);
+    $stmt->bindValue(":last_date", $last_date, PDO::PARAM_STR);
+    $stmt->bindValue(":limit", $sp_max, PDO::PARAM_INT);
+}
+
+$stmt->execute();
+$bc_rows = $stmt->fetchAll();
+
+// 다음 페이지를 위한 마지막 날짜 구하기
+$next_last_date = count($bc_rows) > 0 ? end($bc_rows)->bc_date : null;
+
+// 이전 페이지를 위한 첫 번째 날짜 구하기
+$prev_last_date = count($bc_rows) > 0 ? reset($bc_rows)->bc_date : null;
+
+// 전체 댓글 개수 조회
+$count_query = "SELECT COUNT(*) as total FROM board_comment WHERE bc_writer = :bc_writer";
+$count_stmt = $pdo->prepare($count_query);
+$count_stmt->bindValue(":bc_writer", $user_nickname, PDO::PARAM_STR);
+$count_stmt->execute();
+$total_count = $count_stmt->fetch()->total;
+$total_page = ceil($total_count / $sp_max);
+?>
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="http://{도메인}/css/common.css?after">
+    <link rel="stylesheet" href="http://{도메인}/css/myaccount.css?after">
+    <link rel="stylesheet" href="http://{도메인}/css/board.css?after">
+    <script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+    <title>내가 쓴 댓글</title>
+</head>
+<body>
+
+    <div class="backgc_div">
+        <div class="uwba_div">
+            <h1>내가 쓴 댓글</h1>
+            <form method="post" action="http://{도메인}/page/user/myaccount.htm">
+                <button class="turn_btn" type="submit">돌아가기</button>
+            </form>
+
+            <?php if (empty($bc_rows)) : ?>
+                <h2>댓글이 없어요 ㅠㅠ</h2>
+            <?php else: ?>
+                <table class="uwbca_table">
+                    <thead>
+                        <tr class="uwbca_tr">
+                            <td class="uwbca_bbtd">게시글 제목</td>
+                            <td class="uwbca_bbtd">댓글 내용</td>
+                            <td class="uwbca_bbtd">댓글 작성자</td>
+                            <td class="uwbca_bbtd">댓글 작성 날짜</td>
+                            <td class="uwbca_bbtd">댓글 추천 수</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php foreach ($bc_rows as $bvcr): ?>
+                            <tr class="uwbca_tr">
+                                <td class="uwbca_bbtd">
+                                    <a href="http://{도메인}/page/board/board_read.htm?page=1&bid=<?php echo $bvcr->f_bid; ?>">
+                                        <?php echo htmlspecialchars($bvcr->board_title); ?>
+                                    </a>
+                                </td>
+                                <td class="uwbca_bbtd"><?php echo htmlspecialchars($bvcr->bc_comment); ?></td>
+                                <td class="uwbca_bbtd"><?php echo htmlspecialchars($bvcr->bc_writer); ?></td>
+                                <td class="uwbca_bbtd"><?php echo htmlspecialchars($bvcr->bc_date); ?></td>
+                                <td class="uwbca_bbtd"><?php echo (int)$bvcr->bc_gb; ?></td>
+                            </tr>
+                        <?php endforeach; ?>
+                    </tbody>
+                </table>
+
+                <!-- 페이지 네비게이션 -->
+                <div class="page_num">
+                    <ul>
+                        <?php if ($page > 1): ?>
+                            <li><a href="?page=<?php echo $page - 1; ?>&last_date=<?php echo urlencode($prev_last_date); ?>">이전</a></li>
+                        <?php endif; ?>
+
+                        <?php 
+                        $start_page = max(1, $page - 2);
+                        $end_page = min($total_page, $page + 2);
+
+                        for ($i = $start_page; $i <= $end_page; $i++):
+                            if ($i == $page):
+                        ?>
+                            <li><strong>[<?php echo $i; ?>]</strong></li>
+                        <?php else: ?>
+                            <li><a href="?page=<?php echo $i; ?>&last_date=<?php echo urlencode($prev_last_date); ?>">[<?php echo $i; ?>]</a></li>
+                        <?php endif; endfor; ?>
+
+                        <?php if ($next_last_date): ?>
+                            <li><a href="?page=<?php echo $page + 1; ?>&last_date=<?php echo urlencode($next_last_date); ?>">다음</a></li>
+                        <?php endif; ?>
+                    </ul>
+                </div>
+            <?php endif; ?>
+        </div>
+    </div>
+</body>
+</html>

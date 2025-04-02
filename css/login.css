@@ -1,0 +1,67 @@
+.login_div button, .register_div button, .find_div button, .check_div button{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 100%;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.login_div, .register_div, .find_div, .check_div{
+	width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+	text-align: center;
+}
+
+.login_form, .register_form, .find_form, .check_form{
+	position: relative;
+  max-width: 360px;
+  margin: 0 auto 10px;
+  padding: 30px;
+}
+
+.login_form input, .register_form input, .find_form input, .check_div input{
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+
+.login_form input::placeholder, .register_form input::placeholder, .find_form input::placeholder, .check_form input::placeholder{
+	text-align: center;
+}
+
+.find_idf, .gt_login{
+  max-width: 360px;
+	margin-top: -40px;
+  padding: 30px;
+}
+
+.find_pwdf{
+	max-width: 360px;
+	margin-top: -35px;
+  padding: 30px;
+}
+
+.move_su{
+	color: #7c6969;
+}
+
+.goback_form button{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 100px;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  font-size: 14px;
+}

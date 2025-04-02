@@ -1,0 +1,125 @@
+.admin_div, .user_account_info, .ui_div{
+	padding: 150px;
+	text-align: center;
+}
+
+.user_account_info{
+  height: 850px;
+}
+
+.adminp_table, .uai_table, .ui_table, .cg_table{
+	margin-top: 50px;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.adminp_btn{
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 180px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+.admint_btn{
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 300px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+  margin-bottom: 50px;
+}
+
+.user_btn{
+	font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 300px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.ms_tr{
+	height: 50px;
+}
+
+.mb_tr{
+	height: 70px;
+}
+
+.w_td{
+	width: 150px;
+}
+.w_tbd{
+	width: 300px;
+}
+.wem_td{
+	width: 200px;
+}
+
+.ms_tr td{
+	width: 150px;
+}
+
+.turn_btn{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  margin-top: 30px;
+  width: 100px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.mb button{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 300px;
+	height: 50px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.ms button, .cg_btn{
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #808080;
+  width: 150px;
+	height: 30px;
+  border: 0;
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.cg_div{
+  width: 360px;
+  padding: 8% 0 0;
+  margin: auto;
+	text-align: center;
+}
+
+.dummysendd_form input{
+  margin-right: 30px;
+}
+
+.page_num{
+	font-size: 14px;
+	margin-left: 800px;
+}
+.page_num ul li {
+	display: flex;
+	float: left;
+	margin-left: 10px;
+	text-align: center;
+}

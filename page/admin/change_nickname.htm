@@ -1,0 +1,51 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.adminVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$uid = $_GET['uid'];
+	
+	$av = new adminVO();
+	$av->setuid($uid);
+	$row = $av->selectUser(3);
+	$adminVO = $row[0];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/admin.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>change_nickname</title>
+</head>
+
+<body>
+	<div class="backgc_div">
+		<div class="cg_div">
+			<h1>닉네임 변경</h1>
+			<form method="post" action="http://{도메인}/page/admin/user_info.htm?uid=<?php echo $uid ?>">
+				<button class="turn_btn" type="submit">돌아가기</button>
+			</form>
+			<table class="cg_table">
+				<tr>
+					<td>현재 닉네임</td>
+					<td><?php echo $adminVO->user_nickname ?></td>
+				</tr>
+				<tr>
+					<form class="cg_form" method="post" action="http://{도메인}/php/admin/change_nickname.php?uid=<?php echo $uid ?>">
+						<td>
+							<input type="text" id="new_nickname" name="new_nickname">
+						</td>
+						<td>
+							<button class="cg_btn" type="submit">닉네임 변경하기</button>
+						</td>
+					</form>
+				</tr>
+			</table>
+		</div>
+	</div>
+	<?php $con->close(); ?>
+</body>

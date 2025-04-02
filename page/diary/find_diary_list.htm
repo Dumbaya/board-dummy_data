@@ -1,0 +1,170 @@
+<?php
+	include($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.diaryVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$current_page = basename($_SERVER['PHP_SELF']);
+
+	$condition = $_GET['condition'];
+	$for_search = $_GET['for_search'];
+	$did = $_GET['did'];
+
+	if($for_search==''){
+		echo "<script>window.location.href='http://{도메인}/page/diary/diary_list.htm?did=".$did."'</script>";
+	}
+
+	$dv = new diaryVO();
+	$com = new common();
+
+	$dv->setf_did($did);
+
+	$where = $com->getWhere($condition, $for_search, 3);
+	$d_cnt = $dv->where_select(1, $where);
+
+	if(isset($_GET['page'])){
+			$page=$_GET['page'];
+	}
+	else{
+			$page=1;
+	}
+
+	$sp_max = 5;//한 페이지에 보여줄 개수
+	$list_n = 5;//한 번에 리스트 몇개 보여줄지
+
+	$list_cnt = ceil($page/$list_n);
+	$list_start = (($list_cnt -1) * $list_n) + 1;
+	$list_end = $list_start + $list_n - 1;
+
+	$total_page = ceil($d_cnt/$sp_max);
+	if($list_end > $total_page) $list_end = $total_page;
+	$total_list = ceil($total_page/$list_n);
+	$start_num = ($page-1) * $sp_max;
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/diary.css">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Dairy_List</title>
+</head>
+
+<body class="backg_body">
+	<div class="backgc_div">
+		<div class="dl_div">
+				<h1>
+					<a class="menu_movea" href="http://{도메인}/page/diary/diary_list.htm?did=<?phpecho $did ?>&&page=1">
+						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-feather" viewBox="0 0 16 16">
+							<path d="M15.807.531c-.174-.177-.41-.289-.64-.363a3.8 3.8 0 0 0-.833-.15c-.62-.049-1.394 0-2.252.175C10.365.545 8.264 1.415 6.315 3.1S3.147 6.824 2.557 8.523c-.294.847-.44 1.634-.429 2.268.005.316.05.62.154.88q.025.061.056.122A68 68 0 0 0 .08 15.198a.53.53 0 0 0 .157.72.504.504 0 0 0 .705-.16 68 68 0 0 1 2.158-3.26c.285.141.616.195.958.182.513-.02 1.098-.188 1.723-.49 1.25-.605 2.744-1.787 4.303-3.642l1.518-1.55a.53.53 0 0 0 0-.739l-.729-.744 1.311.209a.5.5 0 0 0 .443-.15l.663-.684c.663-.68 1.292-1.325 1.763-1.892.314-.378.585-.752.754-1.107.163-.345.278-.773.112-1.188a.5.5 0 0 0-.112-.172M3.733 11.62C5.385 9.374 7.24 7.215 9.309 5.394l1.21 1.234-1.171 1.196-.027.03c-1.5 1.789-2.891 2.867-3.977 3.393-.544.263-.99.378-1.324.39a1.3 1.3 0 0 1-.287-.018Zm6.769-7.22c1.31-1.028 2.7-1.914 4.172-2.6a7 7 0 0 1-.4.523c-.442.533-1.028 1.134-1.681 1.804l-.51.524zm3.346-3.357C9.594 3.147 6.045 6.8 3.149 10.678c.007-.464.121-1.086.37-1.806.533-1.535 1.65-3.415 3.455-4.976 1.807-1.561 3.746-2.36 5.31-2.68a8 8 0 0 1 1.564-.173"/>
+						</svg>
+					</a>
+				</h1>
+				<div class="bl_menu">
+						<form class="dwl_f" name="dwl_f" method="post" action="http://{도메인}/page/diary/diary_write.htm">
+							<input type="hidden" name="f_did" value="<?php echo $did ?>">
+							<button type="submit">일기 쓰기</button>
+						</form>
+				</div>
+						<?php if ($d_cnt == 0) : ?>
+										<h2>찾으시는 일기가 없어요 ㅠㅠ</h2>
+						<?php endif; ?>
+								<table class="dl_table">
+										<thead>
+												<tr>
+														<td class="dl_bbtd">제목</td>
+														<td class="dl_bbtd">작성 날짜</td>
+												</tr>
+										</thead>
+										<tbody>
+												<?php
+														$rows = $dv->where_select(2, $where, $start_num, $sp_max);
+														
+														foreach ($rows as $dr) {
+												?>
+												<tr>
+														<td class="dl_bbtd"><!--제목-->
+																<a href="http://{도메인}/page/diary/diary_read.htm?dlid=<?php echo $dr->dlid ?>">
+																		<?php echo $dr->dl_title ?>
+																</a>
+														</td>
+														<td class="dl_bbtd"><?php echo $dr->dl_date ?></td><!--작성 날짜-->
+														<td>
+															<form class="delete_diary" method="post" action="http://{도메인}/php/diary/diary_delete.php?dlid=<?php echo $dr->dlid ?>">
+																	<button type="submit">일기 삭제</button>
+															</form>
+														</td>
+												</tr>
+												<?php
+														};
+												?>
+										</tbody>
+								</table>
+				</div>
+				<div class="page_num">
+						<ul>
+								<?php
+										if($page <= 1){
+												echo "<li>처음</li>";
+										}
+										else{
+												echo "<li><a href='{$current_page}?page=1'>처음</a></li>";
+										}
+
+										if($page <= 1){
+										}
+										else{
+												$pre = $list_start-1;
+												if($pre <= 1){
+														$pre = 1;
+												}
+												echo "<li><a href='{$current_page}?page=$pre'>이전</a></li>";
+										}
+
+										for($i=$list_start; $i<=$list_end; $i++){
+												if($page==$i){
+														echo "<li>[$i]</li>";
+												}
+												else{
+														echo "<li><a href='{$current_page}?page=$i'>[$i]</a></li>";
+												}
+										}
+
+										if($list_cnt >= $total_list){
+										}
+										else{
+												$next = $list_end+1;
+												if($next >= $total_page){
+														$next = $total_page;
+												}
+												echo "<li><a href='{$current_page}?page=$next'>다음</a></li>";
+										}
+
+										if($page >= $total_page){
+												echo "<li>마지막</li>";
+										}
+										else{
+												echo "<li><a href='{$current_page}?page=$total_page'>마지막</a></li>"; 
+										}
+								?>
+						</ul>
+				</div>
+				<br>
+				<div class="search_div">
+						<form class="for_search" method="get" action="http://{도메인}/page/diary/find_diary_list.htm">
+								<input type="hidden" name="did" value="<?php echo $did ?>">
+								<input type="hidden" name="page" value="1">
+								<select name="condition">
+										<option value="1">제목</option>
+										<option value="2">내용</option><!--댓글+게시글 내용-->
+										<option value="3">제목+내용</option><!--제목+댓글+게시글 내용-->
+								</select>
+								<input type="text" name="for_search" placeholder="검색할 내용">
+								<button type="submit">검색</button>
+						</form>
+				</div>
+		</div>
+</div>
+</body>

@@ -1,0 +1,40 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/session.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.boardVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$tmp_num = $_GET['tmp_num'];
+	$number = $_GET['bcid'];
+	$user_id = $_SESSION['user_id'];
+
+	$bv = new boardVO();
+	$bv->setbcid($number);
+	$row = $bv->select(19);
+	$br = $row[0];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Board Comment Update</title>
+</head>
+<body class="bcu_body">
+		<div class="bcu_div">
+			<h1>댓글 수정</h1>
+			<form class="bcut_form" onclick="self.close()">
+				<button type="submit">이전</button>
+			</form>
+			<form class="bcu_form" method="post" action="http://{도메인}/php/board/board_comment_update.php?bcid=<?php echo $number ?>">
+				<input type="hidden" name="tmp_num" value="<?php echo $tmp_num ?>">
+				<input type="text" id="bc_comment" name="bc_comment" value="<?php echo $br->bc_comment ?>">
+				<input type="hidden" id="f_bid" name="f_bid" value="<?php echo $br->f_bid ?>">
+				<br>
+				<button type="submit">수정하기</button>
+			</form>
+		</div>
+</body>

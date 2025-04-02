@@ -1,0 +1,94 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/session.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.userVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.boardVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.bonogaVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.diaryVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$uv = new userVO();
+	$bv = new boardVO();
+	$bov = new bonogaVO();
+	$dv = new diaryVO();
+	
+	$user_nickname=$_SESSION['user_nickname'];
+
+	$uv->user_nickname_con($user_nickname);
+	$f_search=array("user_nickname" => $user_nickname);
+	$row = $uv->selectList($f_search);
+	$userVO = $row[0];
+
+	$bv->setboard_writer($user_nickname);
+	$tmp_row = $bv->select(9);
+	$board_num = $tmp_row[0]->{'COUNT(bid)'};
+
+	$bv->setbc_writer($user_nickname);
+	$tmp_row = $bv->select(11);
+	$bc_num = $tmp_row[0]->{'COUNT(bcid)'};
+
+	$bov->setimg_writer($user_nickname);
+	$bo_num = $bov->select(8);
+
+	$dv->setd_writer($user_nickname);
+	$d_num = $dv->select(6);
+?>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<script src="http://{도메인}/js/header.js"></script>
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/myaccount.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>User Popup</title>
+</head>
+
+<body class="userpopup_body">
+	<script>console.log(window.opener);</script>
+	<form class="upc_form" onclick="self.close()">
+		<button type="submit">닫기</button>
+	</form>
+	<div class="userpopup_div">
+		<h1>간단 정보</h1>
+		<table class="userpopup_table">
+			<tr class="up_tr">
+				<td class="up_td">닉네임</td>
+				<td class="upinfo_td">
+					<form class="nn_form" name="nn_form" method="post" action="http://{도메인}/page/user/up_check_password.htm">
+						<input type="hidden" name="tmp_num" value="1">
+						<button type="submit"><?php echo $userVO->user_nickname ?></button>
+					</form>
+				</td>
+			</tr>
+			<tr class="up_tr"></tr>
+			<tr>
+				<td class="upinfo_td">
+					<form class="ub_form" method="post" action="http://{도메인}/page/user/up_check_password.htm">
+						<input type="hidden" name="tmp_num" value="2">
+						<button type="submit">내가 쓴 게시글 수 : <?php echo $board_num ?></button>
+					</form>
+				</td>
+				<td class="upinfo_td">
+					<form class="ub_form" method="post" action="http://{도메인}/page/user/up_check_password.htm">
+						<input type="hidden" name="tmp_num" value="3">
+						<button type="submit">내가 쓴 댓글 수 : <?php echo $bc_num ?></button>
+					</form>
+				</td>
+			</tr>
+			<tr>
+				<td class="upinfo_td">
+					<form class="ub_form" method="post" action="http://{도메인}/page/user/up_check_password.htm">
+						<input type="hidden" name="tmp_num" value="4">
+						<button type="submit">내가 작성한 사진 수 : <?php echo $bo_num ?></button>
+					</form>
+				</td>
+				<td class="upinfo_td">
+					<form class="ub_form" method="post" action="http://{도메인}/php/diary/go_diary.php">
+						<button type="submit">내가 작성한 일기 수 : <?php echo $d_num ?></button>
+					</form>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>

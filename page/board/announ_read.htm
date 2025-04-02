@@ -1,0 +1,70 @@
+<?php
+	include_once($_SERVER['DOCUMENT_ROOT'].'/page/header.inc');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.boardVO.php');
+	include_once($_SERVER['DOCUMENT_ROOT'].'/php/class/class.common.php');
+
+	$aid = $_GET['aid'];
+	$user_id = $_SESSION['user_id'];
+
+	$bv = new boardVO();
+	$bv->setaid($aid);
+	$row = $bv->select(7);
+	$announ = $row[0];
+?>
+<!DOCTYPE html>
+<html lang="ko">
+	<script src="../../js/board.js"></script>
+<head>
+	<meta charset="EUC-KR">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="http://{도메인}/css/common.css">
+	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
+	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<title>Announ Read</title>
+</head>
+<body>
+	<div class="backgc_div_r">
+		<div class="br_div">
+			<h1>공지</h1>
+		
+			<div class="braction_div">
+					<form class="bra_form" method="post" name="move_back_form" action="http://{도메인}/page/board/board.htm">
+						<button type="submit">이전</button>
+					</form>
+					<?php if($_SESSION['user_role']==2): ?>
+					<form class="bra_form" method="post" action="http://{도메인}/page/board/announ_update.htm?aid=<?php echo $aid ?>">
+						<button type="submit">수정</button>
+					</form>
+					<form class="bra_form" method="post" action="http://{도메인}/php/board/announ_delete.php?aid=<?php echo $aid ?>">
+						<button type="submit">삭제</button>
+					</form>
+					<?php endif; ?>
+			</div>
+		
+			<div class="board_read">
+				<table class="br_table">
+					<tr>
+						<td>제목</td>
+						<td><?php echo $announ->a_title ?></td>
+					</tr>
+					<tr>
+						<td>작성자</td>
+						<td><?php echo $announ->a_writer ?></td>
+					</tr>
+					<tr>
+						<td>작성 날짜</td>
+						<td><?php echo $announ->a_date ?></td>
+					</tr>
+					<tr>
+						<td>작성 내용</td>
+						<td><?php echo $announ->a_body ?></td>
+					</tr>
+					<tr>
+						<td>이미지</td>
+						<td><img src="<?php echo $announ->a_imgp ?>"></td>
+					</tr>
+				</table>
+			</div>
+		</div>
+	</div>
+</body>
