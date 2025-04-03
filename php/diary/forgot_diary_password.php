@@ -17,7 +17,7 @@
 
 		if ($dv->update(1)) {
 			echo "<script>alert('새 비밀번호 설정 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/diary/for_diary_password.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/diary/for_diary_password.htm';</script>";
 		} else {
 			echo "<script>alert('새 비밀번호 설정 실패!');</script>";
 			echo "<script>window.history.back();</script>";

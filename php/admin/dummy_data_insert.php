@@ -11,11 +11,11 @@
 
 		if($dv->insert($mode, $count)){
 			echo "<script>alert('테스트 데이터 삽입 ".$count."개 성공!"."\\n"."혹시 모르니 데이터 확인해주세요');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/admin/test_data_insert.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/admin/test_data_insert.htm';</script>";
 		} else{
 			$dv->set_ai(1);
 			echo "<script>alert('테스트 데이터 삽입 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/admin/test_data_insert.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/admin/test_data_insert.htm';</script>";
 		}
 	}
 ?>

@@ -18,9 +18,9 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/board.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Board Comment Update</title>
 </head>
 <body class="bcu_body">
@@ -29,7 +29,7 @@
 			<form class="bcut_form" onclick="self.close()">
 				<button type="submit">이전</button>
 			</form>
-			<form class="bcu_form" method="post" action="http://{도메인}/php/board/board_comment_update.php?bcid=<?php echo $number ?>">
+			<form class="bcu_form" method="post" action="http://localhost/php/board/board_comment_update.php?bcid=<?php echo $number ?>">
 				<input type="hidden" name="tmp_num" value="<?php echo $tmp_num ?>">
 				<input type="text" id="bc_comment" name="bc_comment" value="<?php echo $br->bc_comment ?>">
 				<input type="hidden" id="f_bid" name="f_bid" value="<?php echo $br->f_bid ?>">

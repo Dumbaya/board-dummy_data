@@ -20,7 +20,7 @@
 
 		if ($cnt > 0) {
 			if (strcmp($enc_password, $dr->d_password)==0) {
-				echo "<script>alert('인증 성공!'); window.location.href = 'http://{도메인}/page/diary/diary_list.htm?did=".$dr->did."';</script>";
+				echo "<script>alert('인증 성공!'); window.location.href = 'http://localhost/page/diary/diary_list.htm?did=".$dr->did."';</script>";
 			} else {
 				echo "<script>alert('잘못된 비밀번호입니다.'); window.history.back();</script>";
 			}

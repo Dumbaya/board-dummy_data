@@ -19,9 +19,9 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/diary.css">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/diary.css">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Diary Read</title>
 </head>
 <body class="backg_body">
@@ -29,13 +29,13 @@
 		<div class="dr_div">
 			<h1>일기</h1>
 			<div class="draction_div">
-					<form class="dra_form" method="post" name="move_back_form" action="http://{도메인}/page/diary/diary_list.htm?did=<?php echo $dr->f_did ?>">
+					<form class="dra_form" method="post" name="move_back_form" action="http://localhost/page/diary/diary_list.htm?did=<?php echo $dr->f_did ?>">
 						<button type="submit">이전</button>
 					</form>
-					<form class="dra_form" method="post" action="http://{도메인}/page/diary/diary_update.htm?dlid=<?php echo $dlid ?>">
+					<form class="dra_form" method="post" action="http://localhost/page/diary/diary_update.htm?dlid=<?php echo $dlid ?>">
 						<button type="submit">수정</button>
 					</form>
-					<form class="dra_form" method="post" action="http://{도메인}/php/diary/diary_delete.php?dlid=<?php echo $dlid ?>&did=<?php echo $dr->f_did ?>">
+					<form class="dra_form" method="post" action="http://localhost/php/diary/diary_delete.php?dlid=<?php echo $dlid ?>&did=<?php echo $dr->f_did ?>">
 						<button type="submit">삭제</button>
 					</form>
 			</div>

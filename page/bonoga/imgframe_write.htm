@@ -6,7 +6,7 @@
 
 	if(isset($user_id)==false){
 		echo "<script>alert('로그인 후 이용해주세요');</script>";
-		echo "<script>window.location.href='http://{도메인}/page/user/login.htm?tmp_num=3';</script>";
+		echo "<script>window.location.href='http://localhost/page/user/login.htm?tmp_num=3';</script>";
 	}
 ?>
 <!DOCTYPE html>
@@ -15,19 +15,19 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/bonoga.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/bonoga.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Gallery</title>
 </head>
 
 <body>
 	<div class="backgc_div">
 		<div class="imgframew_div">
-			<form class="bwt_form" action="http://{도메인}/page/bonoga/gallery.htm">
+			<form class="bwt_form" action="http://localhost/page/bonoga/gallery.htm">
 				<button type="submit">이전</button>
 			</form>
-			<form class="imgf" method="post" action="http://{도메인}/php/bonoga/img_upload.php" enctype="multipart/form-data">
+			<form class="imgf" method="post" action="http://localhost/php/bonoga/img_upload.php" enctype="multipart/form-data">
 				<input type="file" class="imgf_img" accept="image/*" name="img" required>
 				<br>
 				<input type="text" class="imgf_title" name="img_title" placeholder="제목">

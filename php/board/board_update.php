@@ -19,7 +19,7 @@
 
 		if ($bv->update(2)) {
 			echo "<script>alert('게시글 수정 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/board/board_read.htm?bid=".$bid."';</script>";
+			echo "<script>window.location.href='http://localhost/page/board/board_read.htm?bid=".$bid."';</script>";
 		} else {
 			echo "<script>alert('게시글 수정 실패!');</script>";
 			echo "<script>window.history.back();</script>";

@@ -10,7 +10,7 @@
 		$si = $_SESSION['user_id'];
 
 		if($for_search==''){
-			echo "<script>window.location.href='http://{도메인}/page/bonoga/gallery.htm?page=1'</script>";
+			echo "<script>window.location.href='http://localhost/page/bonoga/gallery.htm?page=1'</script>";
 		}
 
 		if(isset($_GET['page'])){
@@ -45,23 +45,23 @@
 <head>
     <meta charset="EUC-KR">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/bonoga.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/bonoga.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
     <title>Find_Gallery</title>
 </head>
 <body class="backg_body">
     <div class="backgc_div">
 			<div class="bonoga_div">
 				<h1>
-					<a class="menu_movea" href="http://{도메인}/page/bonoga/gallery.htm?page=1">
+					<a class="menu_movea" href="http://localhost/page/bonoga/gallery.htm?page=1">
 						<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-card-image" viewBox="0 0 16 16">
 							<path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0"/>
 							<path d="M1.5 2A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2zm13 1a.5.5 0 0 1 .5.5v6l-3.775-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12v.54L1 12.5v-9a.5.5 0 0 1 .5-.5z"/>
 						</svg>
 					</a>
 				</h1>
-				<form class="go_writef" method="post" action="http://{도메인}/page/bonoga/imgframe_write.htm">
+				<form class="go_writef" method="post" action="http://localhost/page/bonoga/imgframe_write.htm">
 					<button type="submit">사진 올리기</button>
 				</form>
 
@@ -91,7 +91,7 @@
 						</tr>
 						<tr>
 								<td>
-									<form method="post" action="http://{도메인}/php/bonoga/img_gb_good.php">
+									<form method="post" action="http://localhost/php/bonoga/img_gb_good.php">
 										<button type="submit" class="img_gb_btn">
 											<input type="hidden" name="iid" value="<?php echo $bonoga->iid?>">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile-fill" viewBox="0 0 16 16">
@@ -101,7 +101,7 @@
 									</form>
 								</td>
 								<td>
-									<form method="post" action="http://{도메인}/php/bonoga/img_gb_bad.php">
+									<form method="post" action="http://localhost/php/bonoga/img_gb_bad.php">
 										<button type="submit" class="img_gb_btn">
 											<input type="hidden" name="iid" value="<?php echo $bonoga->iid?>">
 											<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-angry-fill" viewBox="0 0 16 16">
@@ -166,7 +166,7 @@
 							</div>
 							<br>
 							<div class="search_div">
-									<form class="for_search" method="get" action="http://{도메인}/page/bonoga/find_gallery.htm">
+									<form class="for_search" method="get" action="http://localhost/page/bonoga/find_gallery.htm">
 											<input type="hidden" name="page" value="1">
 											<select name="condition">
 													<option value="1">제목</option>

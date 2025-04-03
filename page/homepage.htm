@@ -7,31 +7,31 @@
 <head>
     <meta charset="EUC-KR">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://{도메인}/css/common.css?after">
-	<link rel="stylesheet" href="http://{도메인}/css/login.css">
-	<link rel="stylesheet" href="http://{도메인}/bootstrap/css/bootstrap.min.css">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="http://localhost/css/common.css?after">
+	<link rel="stylesheet" href="http://localhost/css/login.css">
+	<link rel="stylesheet" href="http://localhost/bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
     <title>Homepage</title>
 </head>
 <body class="backg_body">
     <div class="homepage_div">
         <?php if(isset($_SESSION['user_id'])): ?>
-            <form class="hpf" action="http://{도메인}/page/user/check_password.htm">
+            <form class="hpf" action="http://localhost/page/user/check_password.htm">
                 <button class="homepage_btns" type="submit">내 정보 보기</button>
             </form>
-            <form class="hpf" action="http://{도메인}/page/diary/for_diary_password.htm">
+            <form class="hpf" action="http://localhost/page/diary/for_diary_password.htm">
                 <button class="homepage_btns" type="submit">나만의 일기</button>
             </form>
             <?php if($_SESSION['user_role']==2): ?>
-                <form class="hpf" action="http://{도메인}/page/admin/admin_page.htm">
+                <form class="hpf" action="http://localhost/page/admin/admin_page.htm">
                     <button class="homepage_btns" type="submit">관리자용 페이지</button>
                 </form>
             <?php endif; ?>
         <?php endif; ?>
-        <form class="hpf" action="http://{도메인}/page/board/board.htm?page=1">
+        <form class="hpf" action="http://localhost/page/board/board.htm?page=1">
             <button class="homepage_btns" type="submit">게시판</button>
         </form>
-        <form class="hpf" action="http://{도메인}/page/bonoga/gallery.htm?page=1">
+        <form class="hpf" action="http://localhost/page/bonoga/gallery.htm?page=1">
             <button class="homepage_btns" type="submit">갤러리</button>
         </form>
     </div>

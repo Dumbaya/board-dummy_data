@@ -37,10 +37,10 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="http://{도메인}/js/header.js"></script>
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/myaccount.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<script src="http://localhost/js/header.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/myaccount.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>User Popup</title>
 </head>
 
@@ -55,7 +55,7 @@
 			<tr class="up_tr">
 				<td class="up_td">닉네임</td>
 				<td class="upinfo_td">
-					<form class="nn_form" name="nn_form" method="post" action="http://{도메인}/page/user/up_check_password.htm">
+					<form class="nn_form" name="nn_form" method="post" action="http://localhost/page/user/up_check_password.htm">
 						<input type="hidden" name="tmp_num" value="1">
 						<button type="submit"><?php echo $userVO->user_nickname ?></button>
 					</form>
@@ -64,13 +64,13 @@
 			<tr class="up_tr"></tr>
 			<tr>
 				<td class="upinfo_td">
-					<form class="ub_form" method="post" action="http://{도메인}/page/user/up_check_password.htm">
+					<form class="ub_form" method="post" action="http://localhost/page/user/up_check_password.htm">
 						<input type="hidden" name="tmp_num" value="2">
 						<button type="submit">내가 쓴 게시글 수 : <?php echo $board_num ?></button>
 					</form>
 				</td>
 				<td class="upinfo_td">
-					<form class="ub_form" method="post" action="http://{도메인}/page/user/up_check_password.htm">
+					<form class="ub_form" method="post" action="http://localhost/page/user/up_check_password.htm">
 						<input type="hidden" name="tmp_num" value="3">
 						<button type="submit">내가 쓴 댓글 수 : <?php echo $bc_num ?></button>
 					</form>
@@ -78,13 +78,13 @@
 			</tr>
 			<tr>
 				<td class="upinfo_td">
-					<form class="ub_form" method="post" action="http://{도메인}/page/user/up_check_password.htm">
+					<form class="ub_form" method="post" action="http://localhost/page/user/up_check_password.htm">
 						<input type="hidden" name="tmp_num" value="4">
 						<button type="submit">내가 작성한 사진 수 : <?php echo $bo_num ?></button>
 					</form>
 				</td>
 				<td class="upinfo_td">
-					<form class="ub_form" method="post" action="http://{도메인}/php/diary/go_diary.php">
+					<form class="ub_form" method="post" action="http://localhost/php/diary/go_diary.php">
 						<button type="submit">내가 작성한 일기 수 : <?php echo $d_num ?></button>
 					</form>
 				</td>

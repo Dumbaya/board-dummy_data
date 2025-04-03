@@ -18,19 +18,19 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/board.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Board Update</title>
 </head>
 <body class="backg_body">
 	<div class="backgc_div">
 		<div class="boardu_div">
 			<h1>게시판 수정</h1>
-			<form class="but_form" method="post" action="http://{도메인}/page/board/board_read.htm?page=1&bid=<?php echo $bid ?>&tmp_num=<?php echo $tmp_num ?>">
+			<form class="but_form" method="post" action="http://localhost/page/board/board_read.htm?page=1&bid=<?php echo $bid ?>&tmp_num=<?php echo $tmp_num ?>">
 				<button type="submit">이전</button>
 			</form>
-			<form class="board_update_form" name="board_update_form" method="post" action="http://{도메인}/php/board/board_update.php?bid=<?php echo $bid ?>" enctype="multipart/form-data">
+			<form class="board_update_form" name="board_update_form" method="post" action="http://localhost/php/board/board_update.php?bid=<?php echo $bid ?>" enctype="multipart/form-data">
 				<input type="hidden" name="tmp_num" value="<?php echo $tmp_num ?>">
 				제목<br><input type="text" id="board_title" name="board_title" value="<?php echo $board->board_title ?>">
 				<br>

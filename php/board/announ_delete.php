@@ -13,7 +13,7 @@
 
 		if ($bv->delete(1)) {
 			echo "<script>alert('게시글 삭제 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/board/board.htm?page=1';</script>";
+			echo "<script>window.location.href='http://localhost/page/board/board.htm?page=1';</script>";
 		} else {
 			echo "<script>alert('게시글 삭제 실패!');</script>";
 			echo "<script>window.history.back();</script>";

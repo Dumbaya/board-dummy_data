@@ -21,16 +21,16 @@
 			if (strcmp($enc_password, $userVO->user_password)==0) {
 				switch($tmp_num){
 					case 1:
-						echo "<script>alert('인증 성공!'); self.close(); window.opener.location = 'http://{도메인}/page/user/myaccount.htm?uid=".$uid."';</script>";
+						echo "<script>alert('인증 성공!'); self.close(); window.opener.location = 'http://localhost/page/user/myaccount.htm?uid=".$uid."';</script>";
 						break;
 					case 2:
-						echo "<script>alert('인증 성공!'); self.close(); window.opener.location = 'http://{도메인}/page/user/user_writeboard_about.htm';</script>";
+						echo "<script>alert('인증 성공!'); self.close(); window.opener.location = 'http://localhost/page/user/user_writeboard_about.htm';</script>";
 						break;
 					case 3:
-						echo "<script>alert('인증 성공!'); self.close(); window.opener.location = 'http://{도메인}/page/user/user_writebc_about.htm';</script>";
+						echo "<script>alert('인증 성공!'); self.close(); window.opener.location = 'http://localhost/page/user/user_writebc_about.htm';</script>";
 						break;
 					case 4:
-						echo "<script>alert('인증 성공!'); self.close(); window.opener.location = 'http://{도메인}/page/user/user_writeimg_about.htm';</script>";
+						echo "<script>alert('인증 성공!'); self.close(); window.opener.location = 'http://localhost/page/user/user_writeimg_about.htm';</script>";
 						break;
 				}
 				

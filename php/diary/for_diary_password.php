@@ -13,10 +13,10 @@
 
 		if ($dv->insert(1)) {
 			echo "<script>alert('비밀번호 입력 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/diary/diary_list.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/diary/diary_list.htm';</script>";
 		} else {
 			echo "<script>alert('비밀번호 입력 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/diary/for_diary_password.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/diary/for_diary_password.htm';</script>";
 		}
 	}
 ?>

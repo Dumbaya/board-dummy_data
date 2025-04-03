@@ -19,9 +19,9 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/myaccount.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/myaccount.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>change_email</title>
 </head>
 
@@ -29,7 +29,7 @@
 	<div class="backgc_div">
 		<div class="cg_div">
 			<h1>이메일 변경</h1>
-			<form method="post" action="http://{도메인}/page/user/myaccount.htm?uid=<?php echo $uid ?>">
+			<form method="post" action="http://localhost/page/user/myaccount.htm?uid=<?php echo $uid ?>">
 				<button class="turn_btn" type="submit">돌아가기</button>
 			</form>
 			<table class="cg_table">
@@ -38,7 +38,7 @@
 					<td><?php echo $userVO->user_email ?></td>
 				</tr>
 				<tr>
-					<form class="cg_form" method="post" action="http://{도메인}/php/user/change_email.php?uid=<?php echo $uid ?>">
+					<form class="cg_form" method="post" action="http://localhost/php/user/change_email.php?uid=<?php echo $uid ?>">
 						<td>
 							<div class="form-floating mb-3">
 								<input type="text" class="form-control" id="floatingInput" name="new_email" placeholder="이메일"><label for="floatingInput">이메일</label>

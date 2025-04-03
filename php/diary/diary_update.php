@@ -18,7 +18,7 @@
 
 		if($dv->update(2)){
 			echo "<script>alert('일기가 성공적으로 수정되었습니다.');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/diary/diary_read.htm?dlid=".$dlid."'</script>";
+			echo "<script>window.location.href='http://localhost/page/diary/diary_read.htm?dlid=".$dlid."'</script>";
 		}
 		else{
 			echo "<script>alert('파일 업로드 중 오류가 발생했습니다.');</script>";

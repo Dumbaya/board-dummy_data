@@ -15,10 +15,10 @@
 		if ($stmt->execute()) {
 			$_SESSION['user_nickname'] = $cov_nn;
 			echo "<script>alert('닉네임 수정 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/user/myaccount.htm?uid=".$uid."';</script>";
+			echo "<script>window.location.href='http://localhost/page/user/myaccount.htm?uid=".$uid."';</script>";
 		} else {
 			echo "<script>alert('닉네임 수정 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/user/myaccount.htm?uid=".$uid."';</script>";
+			echo "<script>window.location.href='http://localhost/page/user/myaccount.htm?uid=".$uid."';</script>";
 		}
 
 		$stmt->close();

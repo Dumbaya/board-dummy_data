@@ -13,10 +13,10 @@
 
 		if ($av->deleteUser()) {
 			echo "<script>alert('유저 삭제 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/admin/user_account_info.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/admin/user_account_info.htm';</script>";
 		} else {
 			echo "<script>alert('유저 삭제 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/admin/user_info.htm?uid=".$uid."';</script>";
+			echo "<script>window.location.href='http://localhost/page/admin/user_info.htm?uid=".$uid."';</script>";
 		}
 	}
 ?>

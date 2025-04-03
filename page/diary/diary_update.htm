@@ -18,19 +18,19 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/diary.css">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/diary.css">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Diary Update</title>
 </head>
 <body class="backg_body">
 	<div>
 		<div class="diaryu_div">
 			<h1>수정</h1>
-			<form class="dut_form" method="post" action="http://{도메인}/page/diary/diary_read.htm?dlid=<?php echo $dr->dlid ?>">
+			<form class="dut_form" method="post" action="http://localhost/page/diary/diary_read.htm?dlid=<?php echo $dr->dlid ?>">
 				<button type="submit">이전</button>
 			</form>
-			<form class="diary_update_form" name="diary_update_form" method="post" action="http://{도메인}/php/diary/diary_update.php?dlid=<?php echo $dr->dlid ?>" enctype="multipart/form-data">
+			<form class="diary_update_form" name="diary_update_form" method="post" action="http://localhost/php/diary/diary_update.php?dlid=<?php echo $dr->dlid ?>" enctype="multipart/form-data">
 				제목<br><input type="text" id="board_title" name="dl_title" value="<?php echo $dr->dl_title ?>">
 				<br>
 				내용<br><textarea id="diary_body" name="dl_body"><?php echo $dr->dl_body ?></textarea>

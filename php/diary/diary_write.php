@@ -19,7 +19,7 @@
 
 		if($dv->insert(2)){
 			echo "<script>alert('성공적으로 업로드되었습니다.');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/diary/diary_list.htm?did=".$f_did."'</script>";
+			echo "<script>window.location.href='http://localhost/page/diary/diary_list.htm?did=".$f_did."'</script>";
 		}
 		else{
 			$dv->set_ai();

@@ -45,19 +45,19 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<link
 			rel="stylesheet"
-			href="http://{도메인}/css/common.css?after"
+			href="http://localhost/css/common.css?after"
 		/>
 		<link
 			rel="stylesheet"
-			href="http://{도메인}/css/myaccount.css?after"
+			href="http://localhost/css/myaccount.css?after"
 		/>
 		<link
 			rel="stylesheet"
-			href="http://{도메인}/css/board.css?after"
+			href="http://localhost/css/board.css?after"
 		/>
 		<script
 			type="text/javascript"
-			src="http://{도메인}/jquery/jquery-3.7.1.min.js"
+			src="http://localhost/jquery/jquery-3.7.1.min.js"
 		></script>
 		<title>My Board Write About</title>
 	</head>
@@ -66,7 +66,7 @@
 		<div class="backgc_div">
 			<div class="uwba_div">
 				<h1>내가 쓴 게시글</h1>
-				<form method="post" action="http://{도메인}/page/user/myaccount.htm?uid=<?php echo $uid ?>">
+				<form method="post" action="http://localhost/page/user/myaccount.htm?uid=<?php echo $uid ?>">
 					<button class="turn_btn" type="submit">돌아가기</button>
 				</form>
 				<?php if ($board_num == 0) : ?>
@@ -93,7 +93,7 @@
 								<td class="bl_bbtd">
 									<!--제목-->
 									<a
-										href="http://{도메인}/page/board/board_read.htm?page=1&bid=<?php echo $bvr->bid ?>&tmp_num=2"
+										href="http://localhost/page/board/board_read.htm?page=1&bid=<?php echo $bvr->bid ?>&tmp_num=2"
 									>
 										<?php echo $bvr->board_title ?>
 									</a>
@@ -121,7 +121,7 @@
 									<form
 										class="delete_board"
 										method="post"
-										action="http://{도메인}/php/board/board_delete.php?bid=<?php echo $bvr->bid ?>"
+										action="http://localhost/php/board/board_delete.php?bid=<?php echo $bvr->bid ?>"
 									>
 										<input type="hidden" name="tmp_num" value="1">
 										<button type="submit">게시글 삭제</button>
@@ -185,7 +185,7 @@
 				</div>
 				<br>
 				<div class="search_div">
-					<form class="for_search" method="get" action="http://{도메인}/page/user/find_user_writeboard_about.htm">
+					<form class="for_search" method="get" action="http://localhost/page/user/find_user_writeboard_about.htm">
 						<input type="hidden" name="page" value="1">
 						<select name="condition">
 							<option value="1">제목</option>

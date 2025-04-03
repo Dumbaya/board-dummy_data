@@ -62,10 +62,10 @@ $total_page = ceil($total_count / $sp_max);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="http://{도메인}/css/common.css?after">
-    <link rel="stylesheet" href="http://{도메인}/css/myaccount.css?after">
-    <link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-    <script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+    <link rel="stylesheet" href="http://localhost/css/common.css?after">
+    <link rel="stylesheet" href="http://localhost/css/myaccount.css?after">
+    <link rel="stylesheet" href="http://localhost/css/board.css?after">
+    <script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
     <title>내가 쓴 댓글</title>
 </head>
 <body>
@@ -73,7 +73,7 @@ $total_page = ceil($total_count / $sp_max);
     <div class="backgc_div">
         <div class="uwba_div">
             <h1>내가 쓴 댓글</h1>
-            <form method="post" action="http://{도메인}/page/user/myaccount.htm">
+            <form method="post" action="http://localhost/page/user/myaccount.htm">
                 <button class="turn_btn" type="submit">돌아가기</button>
             </form>
 
@@ -94,7 +94,7 @@ $total_page = ceil($total_count / $sp_max);
                         <?php foreach ($bc_rows as $bvcr): ?>
                             <tr class="uwbca_tr">
                                 <td class="uwbca_bbtd">
-                                    <a href="http://{도메인}/page/board/board_read.htm?page=1&bid=<?php echo $bvcr->f_bid; ?>">
+                                    <a href="http://localhost/page/board/board_read.htm?page=1&bid=<?php echo $bvcr->f_bid; ?>">
                                         <?php echo htmlspecialchars($bvcr->board_title); ?>
                                     </a>
                                 </td>

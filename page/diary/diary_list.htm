@@ -38,10 +38,10 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/diary.css?after">
-	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/diary.css?after">
+	<link rel="stylesheet" href="http://localhost/css/board.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Dairy_List</title>
 </head>
 
@@ -54,7 +54,7 @@
 					</svg>
 				</h1>
 				<div class="bl_menu">
-						<form class="bwl_f" name="bwl_f" method="post" action="http://{도메인}/page/diary/diary_write.htm">
+						<form class="bwl_f" name="bwl_f" method="post" action="http://localhost/page/diary/diary_write.htm">
 							<input type="hidden" name="f_did" value="<?php echo $did ?>">
 							<button type="submit">일기 쓰기</button>
 						</form>
@@ -76,13 +76,13 @@
 												?>
 												<tr>
 														<td class="bl_bbtd"><!--제목-->
-																<a href="http://{도메인}/page/diary/diary_read.htm?dlid=<?php echo $dr->dlid ?>">
+																<a href="http://localhost/page/diary/diary_read.htm?dlid=<?php echo $dr->dlid ?>">
 																		<?php echo $dr->dl_title ?>
 																</a>
 														</td>
 														<td class="dl_bbtd"><?php echo $dr->dl_date ?></td><!--작성 날짜-->
 														<td>
-															<form class="delete_diary" method="post" action="http://{도메인}/php/diary/diary_delete.php?dlid=<?php echo $dr->dlid ?>">
+															<form class="delete_diary" method="post" action="http://localhost/php/diary/diary_delete.php?dlid=<?php echo $dr->dlid ?>">
 																	<button type="submit">일기 삭제</button>
 															</form>
 														</td>
@@ -143,7 +143,7 @@
 				</div>
 				<br>
 				<div class="search_div">
-						<form class="for_search" method="get" action="http://{도메인}/page/diary/find_diary_list.htm">
+						<form class="for_search" method="get" action="http://localhost/page/diary/find_diary_list.htm">
 								<input type="hidden" name="did" value="<?php echo $did ?>">
 								<input type="hidden" name="page" value="1">
 								<select name="condition">

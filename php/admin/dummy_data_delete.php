@@ -24,7 +24,7 @@ error_reporting(E_ALL);
 			$dv->optm($mode);
 
 			echo "<script>alert('테스트 데이터 제거 ".($count-$dummy_cnt)."개 성공!"."\\n"."혹시 모르니 데이터 확인해주세요');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/admin/test_data_insert.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/admin/test_data_insert.htm';</script>";
 		} else {
 			echo "<script>alert('테스트 데이터 제거 실패!');</script>";
 			echo "<script>window.history.back();</script>";

@@ -18,11 +18,11 @@
 
 		if ($bv->insert(2)) {
 			echo "<script>alert('공지 등록 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/board/board.htm?page=1';</script>";
+			echo "<script>window.location.href='http://localhost/page/board/board.htm?page=1';</script>";
 		} else {
 			$bv->set_ai();
 			echo "<script>alert('공지 등록 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/board/announ_write.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/board/announ_write.htm';</script>";
 		}
 	}
 ?>

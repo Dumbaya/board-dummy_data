@@ -4,10 +4,10 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<script src="http://{도메인}/js/header.js"></script>
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/bootstrap/css/bootstrap.min.css">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<script src="http://localhost/js/header.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/bootstrap/css/bootstrap.min.css">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 </head>
 <body>
 	<?php
@@ -15,8 +15,8 @@
 	?>
 	<div class="header_div">
 		<div class="hd">
-			<a href="http://{도메인}/page/homepage.htm">
-				<img src="http://{도메인}/img/home.png" id="home_img">
+			<a href="http://localhost/page/homepage.htm">
+				<img src="http://localhost/img/home.png" id="home_img">
 			</a>
 		</div>
 
@@ -34,11 +34,11 @@
 					<input type="hidden" id="sessionid" name="sessionid" value="<?php echo $_SESSION['user_id'] ?>">
 					<button type="submit"><?php echo $_SESSION['user_nickname'] ?></button>
 				</form>
-        <form class="log_btn1" action="http://{도메인}/php/user/logout.php">
+        <form class="log_btn1" action="http://localhost/php/user/logout.php">
             <button type="submit" class="log_btns">로그아웃</button>
         </form>
         <?php else: ?>
-            <form class="log_btn2" action="http://{도메인}/page/user/login.htm">
+            <form class="log_btn2" action="http://localhost/page/user/login.htm">
                 <button type="submit" class="log_btns">로그인</button>
             </form>
         <?php endif; ?>

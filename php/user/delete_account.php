@@ -13,7 +13,7 @@
 		if ($uv->delete()) {
 			session_destroy();
 			echo "<script>alert('유저 삭제 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/homepage.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/homepage.htm';</script>";
 		} else {
 			echo "<script>alert('유저 삭제 실패!');</script>";
 			echo "<script>window.history.back();</script>";

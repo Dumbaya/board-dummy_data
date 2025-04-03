@@ -4,7 +4,7 @@
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
 		$iid = $_POST['iid'];
 
-		echo "<script>self.close(); window.opener.location = 'http://{도메인}/page/bonoga/img_update.htm?iid=".$iid."';</script>";
+		echo "<script>self.close(); window.opener.location = 'http://localhost인}/page/bonoga/img_update.htm?iid=".$iid."';</script>";
 
 	}
 ?>

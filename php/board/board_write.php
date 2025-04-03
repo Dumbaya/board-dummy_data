@@ -19,11 +19,11 @@
 
 		if($bv->insert(1)){
 			echo "<script>alert('성공적으로 업로드되었습니다.');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/board/board.htm?page=1';</script>";
+			echo "<script>window.location.href='http://localhost/page/board/board.htm?page=1';</script>";
 		}
 		else{
 			echo "<script>alert('파일 업로드 중 오류가 발생했습니다.');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/board/board_write.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/board/board_write.htm';</script>";
 		}
 	}
 ?>

@@ -52,9 +52,9 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/board.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Board Read</title>
 </head>
 <body>
@@ -66,16 +66,16 @@
 			</form>
 		
 			<div class="braction_div">
-					<form class="bra_form" method="post" name="move_back_form" action="http://{도메인}/php/move_back.php">
+					<form class="bra_form" method="post" name="move_back_form" action="http://localhost/php/move_back.php">
 						<input type="hidden" id="tmp_num_mb" name="tmp_num_mb" value="<?php echo $tmp_num_mb ?>">
 						<button type="submit">이전</button>
 					</form>
 					<?php if(strcmp($_SESSION['user_nickname'], $br->board_writer)==0 || $_SESSION['user_role']==2): ?>
-					<form class="bra_form" method="post" action="http://{도메인}/page/board/board_update.htm?bid=<?php echo $bid ?>">
+					<form class="bra_form" method="post" action="http://localhost/page/board/board_update.htm?bid=<?php echo $bid ?>">
 						<input type="hidden" name="tmp_num" value="<?php echo $tmp_num_mb ?>">
 						<button type="submit">수정</button>
 					</form>
-					<form class="bra_form" method="post" action="http://{도메인}/php/board/board_delete.php?bid=<?php echo $bid ?>">
+					<form class="bra_form" method="post" action="http://localhost/php/board/board_delete.php?bid=<?php echo $bid ?>">
 						<input type="hidden" name="tmp_num" value="2">
 						<button type="submit">삭제</button>
 					</form>
@@ -124,11 +124,11 @@
 				</table>
 				<hr></hr>
 				<div class="bgb_div">
-					<form class="bgb_form" method="post" action="http://{도메인}/php/board/board_good.php?bid=<?php echo $bid ?>">
+					<form class="bgb_form" method="post" action="http://localhost/php/board/board_good.php?bid=<?php echo $bid ?>">
 						<input type="hidden" name="tmp_num_mb" value="<?php echo $tmp_num_mb ?>">
 						<button type="submit">게시글 추천</button>
 					</form>
-					<form class="bgb_form" method="post" action="http://{도메인}/php/board/board_bad.php?bid=<?php echo $bid ?>">
+					<form class="bgb_form" method="post" action="http://localhost/php/board/board_bad.php?bid=<?php echo $bid ?>">
 						<input type="hidden" name="tmp_num_mb" value="<?php echo $tmp_num_mb ?>">
 						<button type="submit">게시글 비추천</button>
 					</form>
@@ -167,18 +167,18 @@
 										<!-- 댓글 버튼 -->
 										<div class="comment_actions">
 												<button class="bca_btns1" onclick="ccomment_write_openPopup('<?php echo $tmp_num_mb; ?>', '<?php echo $tmp_bcid; ?>', '<?php echo $tmp_group; ?>')">대댓글 작성</button>
-												<form class="bcgb_btn1" method="post" action="http://{도메인}/php/board/board_comment_good.php?bcid=<?php echo $tmp_bcid; ?>">
+												<form class="bcgb_btn1" method="post" action="http://localhost/php/board/board_comment_good.php?bcid=<?php echo $tmp_bcid; ?>">
 														<input type="hidden" name="tmp_num_mb" value="<?php echo $tmp_num_mb; ?>">
 														<input type="hidden" id="bc_for_good" name="bc_for_good" value="<?php echo $bid; ?>">
 														<button type="submit">댓글 추천</button>
 												</form>
-												<form class="bcgb_btn2" method="post" action="http://{도메인}/php/board/board_comment_bad.php?bcid=<?php echo $tmp_bcid; ?>">
+												<form class="bcgb_btn2" method="post" action="http://localhost/php/board/board_comment_bad.php?bcid=<?php echo $tmp_bcid; ?>">
 														<input type="hidden" name="tmp_num_mb" value="<?php echo $tmp_num_mb; ?>">
 														<input type="hidden" id="bc_for_bad" name="bc_for_bad" value="<?php echo $bid; ?>">
 														<button type="submit">댓글 비추천</button>
 												</form>
 												<?php if (strcmp($_SESSION['user_nickname'], $bcr->bc_writer) == 0 || $_SESSION['user_role'] == 2): ?>
-												<form class="bcgb_btn3" method="post" action="http://{도메인}/php/board/board_comment_delete.php?bid=<?php echo $bid; ?>">
+												<form class="bcgb_btn3" method="post" action="http://localhost/php/board/board_comment_delete.php?bid=<?php echo $bid; ?>">
 														<input type="hidden" name="tmp_num" value="2">
 														<input type="hidden" id="tmp_num_mb" name="tmp_num_mb" value="<?php echo $tmp_num_mb; ?>">
 														<input type="hidden" id="bcid" name="bcid" value="<?php echo $tmp_bcid; ?>">
@@ -205,13 +205,13 @@
 					</tr>
 				</table>
 				<?php if(isset($_SESSION['user_nickname'])): ?>
-					<form class="board_comment_form" name="board_comment_form" method="post" action="http://{도메인}/php/board/board_comment_write.php?bid=<?php echo $bid ?>" onsubmit="return boardcomment_check()">
+					<form class="board_comment_form" name="board_comment_form" method="post" action="http://localhost/php/board/board_comment_write.php?bid=<?php echo $bid ?>" onsubmit="return boardcomment_check()">
 						<input type="hidden" id="tmp_num_mb" name="tmp_num_mb" value="<?php echo $tmp_num_mb ?>">
 						<input type="text" id="board_comment" name="board_comment">
 						<button type="submit">댓글 작성</button>
 					</form>
 				<?php else: ?>
-						<form class="bcf_bef_login" method="post" action="http://{도메인}/page/user/login.htm?tmp_num=2&bid=<?php echo $bid ?>&tmp_num_mb=<?php echo $tmp_num_mb ?>">
+						<form class="bcf_bef_login" method="post" action="http://localhost/page/user/login.htm?tmp_num=2&bid=<?php echo $bid ?>&tmp_num_mb=<?php echo $tmp_num_mb ?>">
 								<button type="submit">댓글 작성은 로그인 후 이용해주세요</button>
 						</form>
 				<?php endif; ?>

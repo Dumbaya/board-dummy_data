@@ -15,16 +15,16 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/login.css">
-	<script type="text/javascript" src="http://{도메인}/bootstrap/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/login.css">
+	<script type="text/javascript" src="http://localhost/bootstrap/js/bootstrap.min.js"></script>
 	<title>Login</title>
 </head>
 
 <body>
 	<div class="backgc_div">
 		<div class="login_div">
-			<form class="login_form" method="post" action="http://{도메인}/php/user/login.php">
+			<form class="login_form" method="post" action="http://localhost/php/user/login.php">
 					<input type="hidden" name="tmp_num" value="<?php echo $tmp_num ?>">
 					<input type="hidden" name="tmp_num_mb" value="<?php echo $tmp_num_mb ?>">
 					<input type="hidden" name="bid" value="<?php echo $bid ?>">
@@ -37,15 +37,15 @@
 					<button type="submit">로그인</button>
 			</form>
 
-			<form class="find_idf" method="post" action="http://{도메인}/page/user/find_id.htm">
+			<form class="find_idf" method="post" action="http://localhost/page/user/find_id.htm">
 				<button type="submit">아이디 찾기</button>
 			</form>
 
-			<form class="find_pwdf" method="post" action="http://{도메인}/page/user/find_password_before.htm">
+			<form class="find_pwdf" method="post" action="http://localhost/page/user/find_password_before.htm">
 				<button type="submit">비밀번호 찾기</button>
 			</form>
 
-			<a class="move_su" href="http://{도메인}/page/user/register.htm">계정이 없으신가요?</a>
+			<a class="move_su" href="http://localhost/page/user/register.htm">계정이 없으신가요?</a>
 		</div>
 	</div>
 </body>

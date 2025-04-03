@@ -2,6 +2,6 @@
 	include_once($_SERVER['DOCUMENT_ROOT'].'/php/session.php');
 
 	if($_SERVER["REQUEST_METHOD"] == "POST"){
-		echo "<script>self.close(); window.opener.location='http://{도메인}/page/diary/for_diary_password.htm';</script>";
+		echo "<script>self.close(); window.opener.location='http://localhost인}/page/diary/for_diary_password.htm';</script>";
 	}
 ?>

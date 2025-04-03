@@ -1,7 +1,7 @@
 function user_openPopup(){
 	var si = document.ma_btn.sessionid;
 
-	var popupURL = "http://{도메인}/page/user/user_popup.htm";
+	var popupURL = "http://localhost인}/page/user/user_popup.htm";
 
 	var popupSet = "width=600,height=400,scrollbars=yes";
 

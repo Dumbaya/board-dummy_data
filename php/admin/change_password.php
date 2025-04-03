@@ -14,10 +14,10 @@
 
 		if ($stmt->execute()) {
 			echo "<script>alert('비밀번호 수정 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/admin/user_info.htm?uid=".$uid."';</script>";
+			echo "<script>window.location.href='http://localhost/page/admin/user_info.htm?uid=".$uid."';</script>";
 		} else {
 			echo "<script>alert('비밀번호 수정 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/admin/user_info.htm?uid=".$uid."';</script>";
+			echo "<script>window.location.href='http://localhost/page/admin/user_info.htm?uid=".$uid."';</script>";
 		}
 
 		$stmt->close();

@@ -16,10 +16,10 @@
 
 		if ($dv->delete(1)) {
 			echo "<script>alert('게시글 삭제 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/diary/diary_list.htm?did=".$did."';</script>";
+			echo "<script>window.location.href='http://localhost/page/diary/diary_list.htm?did=".$did."';</script>";
 		} else {
 			echo "<script>alert('게시글 삭제 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/diary/diary_read.htm?dlid="."$did"."';</script>";
+			echo "<script>window.location.href='http://localhost/page/diary/diary_read.htm?dlid="."$did"."';</script>";
 		}
 	}
 ?>

@@ -17,9 +17,9 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/bonoga.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/bonoga.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Img Popup</title>
 </head>
 
@@ -41,13 +41,13 @@
 			<?php if(strcmp($_SESSION['user_nickname'], $bono->img_writer)==0 || $_SESSION['user_role']==2): ?>
 			<tr>
 				<td>
-					<form class="ip_updf" method="post" action="http://{도메인}/php/bonoga/img_update_before.php">
+					<form class="ip_updf" method="post" action="http://localhost/php/bonoga/img_update_before.php">
 						<input type="hidden" name="iid" value="<?php echo $iid ?>">
 						<button type="submit">수정하기</button>
 					</form>
 				</td>
 				<td>
-					<form class="ip_updf" method="post" action="http://{도메인}/php/bonoga/img_delete.php">
+					<form class="ip_updf" method="post" action="http://localhost/php/bonoga/img_delete.php">
 						<input type="hidden" name="iid" value="<?php echo $iid ?>">
 						<button type="submit">삭제하기</button>
 					</form>

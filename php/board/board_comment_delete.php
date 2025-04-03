@@ -19,11 +19,11 @@
 			switch($tmp_num){
 				case 1:
 					echo "<script>alert('댓글 삭제 성공!');</script>";
-					echo "<script>window.location.href='http://{도메인}/page/user/user_writebc_about.htm';</script>";
+					echo "<script>window.location.href='http://localhost/page/user/user_writebc_about.htm';</script>";
 					break;
 				case 2:
 					echo "<script>alert('댓글 삭제 성공!');</script>";
-					echo "<script>window.location.href='http://{도메인}/page/board/board_read.htm?page=1&bid=".$bid."&tmp_num=".$tmp_num_mb."';</script>";
+					echo "<script>window.location.href='http://localhost/page/board/board_read.htm?page=1&bid=".$bid."&tmp_num=".$tmp_num_mb."';</script>";
 					break;
 			}
 			

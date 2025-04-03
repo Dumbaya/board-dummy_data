@@ -7,19 +7,19 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/board.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Board Write</title>
 </head>
 <body class="backg_body">
 	<div class="backgc_div">
 		<div class="announw_div">
 			<h1>공지 글쓰기</h1>
-			<form class="annount_form" action="http://{도메인}/page/board/board.htm">
+			<form class="annount_form" action="http://localhost/page/board/board.htm">
 				<button type="submit">이전</button>
 			</form>
-			<form class="announ_write_form" name="announ_write_form" method="post" action="http://{도메인}/php/board/announ_write.php" enctype="multipart/form-data">
+			<form class="announ_write_form" name="announ_write_form" method="post" action="http://localhost/php/board/announ_write.php" enctype="multipart/form-data">
 				제목<br><input type="text" id="announ_title" name="announ_title" required>
 				<br>
 				내용<br><input type="text" id="announ_body" name="announ_body" required>

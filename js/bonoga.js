@@ -1,7 +1,7 @@
 function img_openPopup(t_iid){
 	var tmp_iid = t_iid;
 
-	var popupURL = "http://{도메인}/page/bonoga/img_popup.htm?iid="+tmp_iid;
+	var popupURL = "http://localhost인}/page/bonoga/img_popup.htm?iid="+tmp_iid;
 
 	var popupSet = "width=600,height=600,scrollbars=yes";
 

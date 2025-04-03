@@ -23,19 +23,19 @@
 				$com->setSession($user_id, $userVO->user_nickname, $userVO->user_role);
 				switch($tmp_num){
 					case 0:
-						echo "<script>alert('로그인 성공!'); window.location.href = 'http://{도메인}/page/homepage.htm';</script>";
+						echo "<script>alert('로그인 성공!'); window.location.href = 'http://localhost/page/homepage.htm';</script>";
 						break;
 					case 1:
-						echo "<script>alert('로그인 성공!'); window.location.href = 'http://{도메인}/page/board/board_write.htm';</script>";
+						echo "<script>alert('로그인 성공!'); window.location.href = 'http://localhost/page/board/board_write.htm';</script>";
 						break;
 					case 2:
-						echo "<script>alert('로그인 성공!'); window.location.href = 'http://{도메인}/page/board/board_read.htm?page=1&bid=".$bid."&tmp_num=".$tmp_num_mb."';</script>";
+						echo "<script>alert('로그인 성공!'); window.location.href = 'http://localhost/page/board/board_read.htm?page=1&bid=".$bid."&tmp_num=".$tmp_num_mb."';</script>";
 						break;
 					case 3:
-						echo "<script>alert('로그인 성공!'); window.location.href = 'http://{도메인}/page/bonoga/imgframe_write.htm';</script>";
+						echo "<script>alert('로그인 성공!'); window.location.href = 'http://localhost/page/bonoga/imgframe_write.htm';</script>";
 						break;
 					case 4:
-						echo "<script>alert('로그인 성공!'); window.location.href = 'http://{도메인}/page/bonoga/gallery.htm';</script>";
+						echo "<script>alert('로그인 성공!'); window.location.href = 'http://localhost/page/bonoga/gallery.htm';</script>";
 						break;
 				}
 			} else {

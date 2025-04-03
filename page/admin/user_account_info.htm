@@ -41,16 +41,16 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/admin.css">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/admin.css">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>user_account_info</title>
 </head>
 <body class="backg_body">
 	<div class="backgc_div">
 		<div class="user_account_info">
 			<h1>회원 정보 목록</h1>
-			<form action="http://{도메인}/page/admin/admin_page.htm">
+			<form action="http://localhost/page/admin/admin_page.htm">
 				<button class="turn_btn" type="submit">이전</button>
 			</form>
 			<?php if ($cnt == 0) : ?>
@@ -73,7 +73,7 @@
 						<tr class="ms_tr">
 								<td class="w_td"><?php echo $adminVO->uid ?></td>
 								<td class="w_tbd">
-									<form method="post" action="http://{도메인}/page/admin/user_info.htm?uid=<?php echo $adminVO->uid ?>">
+									<form method="post" action="http://localhost/page/admin/user_info.htm?uid=<?php echo $adminVO->uid ?>">
 										<button class="user_btn" type="submit"><?php echo $adminVO->user_id ?></button>
 									</form>
 								</td>

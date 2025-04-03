@@ -12,7 +12,7 @@
 
 		if ($uv->update(1)) {
 			echo "<script>alert('새 비밀번호 설정 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/user/login.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/user/login.htm';</script>";
 		} else {
 			echo "<script>alert('새 비밀번호 설정 실패!');</script>";
 			echo "<script>window.history.back();</script>";

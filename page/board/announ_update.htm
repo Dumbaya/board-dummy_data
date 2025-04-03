@@ -17,19 +17,19 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/board.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Announcement Update</title>
 </head>
 <body class="backg_body">
 	<div class="backgc_div">
 		<div class="boardu_div">
 			<h1>공지 수정</h1>
-			<form class="but_form" method="post" action="http://{도메인}/page/board/announ_read.htm?aid=<?php echo $aid ?>">
+			<form class="but_form" method="post" action="http://localhost/page/board/announ_read.htm?aid=<?php echo $aid ?>">
 				<button type="submit">이전</button>
 			</form>
-			<form class="board_update_form" name="board_update_form" method="post" action="http://{도메인}/php/board/announ_update.php?aid=<?php echo $aid ?>"  enctype="multipart/form-data">
+			<form class="board_update_form" name="board_update_form" method="post" action="http://localhost/php/board/announ_update.php?aid=<?php echo $aid ?>"  enctype="multipart/form-data">
 				제목<br><input type="text" id="announ_title" name="announ_title" value="<?php echo $announ->a_title ?>">
 				<br>
 				내용<br><input id="announ_body" name="announ_body" value="<?php echo $announ->a_body ?>">

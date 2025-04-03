@@ -17,10 +17,10 @@
 
 		if ($bv->update(2)) {
 			echo "<script>alert('공지 수정 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/bonoga/announ_read.htm?aid=".$aid."';</script>";
+			echo "<script>window.location.href='http://localhost/page/bonoga/announ_read.htm?aid=".$aid."';</script>";
 		} else {
 			echo "<script>alert('공지 수정 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/bonoga/announ_update.htm?aid=".$aid."';</script>";
+			echo "<script>window.location.href='http://localhost/page/bonoga/announ_update.htm?aid=".$aid."';</script>";
 		}
 	}
 ?>

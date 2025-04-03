@@ -10,7 +10,7 @@
 
 		if(isset($bg_user)==false){
 			echo "<script>alert('로그인 후 이용해주세요');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/user/login.htm?tmp_num=4';</script>";
+			echo "<script>window.location.href='http://localhost/page/user/login.htm?tmp_num=4';</script>";
 		}
 		else{
 			$bv = new bonogaVO();
@@ -23,7 +23,7 @@
 			if($gb_result==0){
 				if ($bv->insert(3) && $bv->update(3)) {
 					echo "<script>alert('사진 추천 성공!');</script>";
-					echo "<script>window.location.href='http://{도메인}/page/bonoga/gallery.htm?page=1';</script>";
+					echo "<script>window.location.href='http://localhost/page/bonoga/gallery.htm?page=1';</script>";
 				} else {
 					echo "<script>alert('사진 추천 실패!');</script>";
 					echo "<script>window.history.back();</script>";
@@ -33,7 +33,7 @@
 				if ($bv->delete(3) && $bv->update(4)) {
 					echo "tt";
 					echo "<script>alert('사진 추천 취소 성공!');</script>";
-					echo "<script>window.location.href='http://{도메인}/page/bonoga/gallery.htm?page=1';</script>";
+					echo "<script>window.location.href='http://localhost/page/bonoga/gallery.htm?page=1';</script>";
 				} else {
 					echo "<script>alert('사진 추천 취소 실패!');</script>";
 					echo "<script>window.history.back();</script>";

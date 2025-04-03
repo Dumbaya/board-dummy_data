@@ -17,7 +17,7 @@
 		$userVO = $row[0];
 		if($row){
 			if(strcmp($enc_password, $userVO->user_password)==0){
-				echo "<script>alert('인증 성공!'); window.location.href = 'http://{도메인}/page/user/myaccount.htm?uid=".$userVO->uid."';</script>";
+				echo "<script>alert('인증 성공!'); window.location.href = 'http://localhost/page/user/myaccount.htm?uid=".$userVO->uid."';</script>";
 			} else {
 				echo "<script>alert('잘못된 비밀번호입니다.'); window.history.back();</script>";
 			}

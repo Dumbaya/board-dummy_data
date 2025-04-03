@@ -21,7 +21,7 @@
 
 		if ($bv->insert(3)) {
 			echo "<script>alert('댓글 작성 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/board/board_read.htm?bid=".$f_bid."&tmp_num=".$tmp_num_mb."';</script>";
+			echo "<script>window.location.href='http://localhost/page/board/board_read.htm?bid=".$f_bid."&tmp_num=".$tmp_num_mb."';</script>";
 		} else {
 			echo "<script>alert('댓글 작성 실패!');</script>";
 			echo "<script>window.history.back();</script>";

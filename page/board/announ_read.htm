@@ -17,9 +17,9 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/board.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Announ Read</title>
 </head>
 <body>
@@ -28,14 +28,14 @@
 			<h1>공지</h1>
 		
 			<div class="braction_div">
-					<form class="bra_form" method="post" name="move_back_form" action="http://{도메인}/page/board/board.htm">
+					<form class="bra_form" method="post" name="move_back_form" action="http://localhost/page/board/board.htm">
 						<button type="submit">이전</button>
 					</form>
 					<?php if($_SESSION['user_role']==2): ?>
-					<form class="bra_form" method="post" action="http://{도메인}/page/board/announ_update.htm?aid=<?php echo $aid ?>">
+					<form class="bra_form" method="post" action="http://localhost/page/board/announ_update.htm?aid=<?php echo $aid ?>">
 						<button type="submit">수정</button>
 					</form>
-					<form class="bra_form" method="post" action="http://{도메인}/php/board/announ_delete.php?aid=<?php echo $aid ?>">
+					<form class="bra_form" method="post" action="http://localhost/php/board/announ_delete.php?aid=<?php echo $aid ?>">
 						<button type="submit">삭제</button>
 					</form>
 					<?php endif; ?>

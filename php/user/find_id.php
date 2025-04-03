@@ -11,9 +11,9 @@
 		$row = $uv->selectList($f_search, 3);
 		$userVO = $row[0];
 		if ($row) {
-			echo "<script>alert('사용자의 아이디는 ".$userVO->user_id." 입니다.'); window.location.href='http://{도메인}/page/user/login.htm'; </script>";
+			echo "<script>alert('사용자의 아이디는 ".$userVO->user_id." 입니다.'); window.location.href='http://localhost/page/user/login.htm'; </script>";
 		} else {
-			echo "<script>alert('존재하지 않는 사용자입니다.'); window.location.href='http://{도메인}/page/user/find_id.htm';</script>";
+			echo "<script>alert('존재하지 않는 사용자입니다.'); window.location.href='http://localhost/page/user/find_id.htm';</script>";
 		}
 	}
 ?>

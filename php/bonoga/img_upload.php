@@ -18,11 +18,11 @@
 		
 		if($bv->insert()){
 			echo "<script>alert('이미지가 성공적으로 업로드되었습니다.');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/bonoga/gallery.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/bonoga/gallery.htm';</script>";
 		}
 		else{
 			echo "<script>alert('파일 업로드 중 오류가 발생했습니다.');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/bonoga/imgframe_write.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/bonoga/imgframe_write.htm';</script>";
 		}
 	}
 ?>

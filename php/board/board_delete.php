@@ -15,11 +15,11 @@
 			switch($tmp_num){
 				case 1:
 					echo "<script>alert('게시글 삭제 성공!');</script>";
-					echo "<script>window.location.href='http://{도메인}/page/user/user_writeboard_about.htm';</script>";
+					echo "<script>window.location.href='http://localhost/page/user/user_writeboard_about.htm';</script>";
 					break;
 				default:
 					echo "<script>alert('게시글 삭제 성공!');</script>";
-					echo "<script>window.location.href='http://{도메인}/page/board/board.htm';</script>";
+					echo "<script>window.location.href='http://localhost/page/board/board.htm';</script>";
 					break;
 			}
 		} else {

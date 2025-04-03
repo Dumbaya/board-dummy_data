@@ -11,11 +11,11 @@
 		$uv->reg_con($user_id, $user_password, $user_nickname, $user_email);
 		if ($uv->insert()) {
 			echo "<script>alert('회원가입 성공!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/user/login.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/user/login.htm';</script>";
 		} else {
 			$uv->set_ai();
 			echo "<script>alert('회원가입 실패!');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/user/register.htm';</script>";
+			echo "<script>window.location.href='http://localhost/page/user/register.htm';</script>";
 		}
 	}
 ?>

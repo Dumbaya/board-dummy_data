@@ -5,7 +5,7 @@
 
 	if(isset($_SESSION['user_id'])==false){
 		echo "<script>alert('로그인 후 이용해주세요');</script>";
-		echo "<script>window.self.close(); window.opener.location='http://{도메인}/page/user/login.htm?tmp_num=1';</script>";
+		echo "<script>window.self.close(); window.opener.location='http://localhost/page/user/login.htm?tmp_num=1';</script>";
 	}
 
 	$tmp_num = $_GET['tmp_num'];
@@ -24,9 +24,9 @@
 <head>
 	<meta charset="EUC-KR">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="http://{도메인}/css/common.css">
-	<link rel="stylesheet" href="http://{도메인}/css/board.css?after">
-	<script type="text/javascript" src="http://{도메인}/jquery/jquery-3.7.1.min.js"></script>
+	<link rel="stylesheet" href="http://localhost/css/common.css">
+	<link rel="stylesheet" href="http://localhost/css/board.css?after">
+	<script type="text/javascript" src="http://localhost/jquery/jquery-3.7.1.min.js"></script>
 	<title>Board Ccomment Write</title>
 </head>
 <body class="bcu_body">
@@ -35,7 +35,7 @@
 			<form class="bcut_form" onclick="self.close()">
 				<button type="submit">이전</button>
 			</form>
-			<form class="bcu_form" method="post" action="http://{도메인}/php/board/board_ccomment_write.php">
+			<form class="bcu_form" method="post" action="http://localhost/php/board/board_ccomment_write.php">
 				<input type="hidden" name="group_id" value="<?php echo $group_id ?>">
 				<input type="hidden" name="bcid" value="<?php echo $number ?>">
 				<input type="hidden" name="tmp_num_mb" value="<?php echo $tmp_num ?>">

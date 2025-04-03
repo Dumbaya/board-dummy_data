@@ -14,7 +14,7 @@
 
 		if(isset($bg_user)==false){
 			echo "<script>alert('로그인 후 이용해주세요');</script>";
-			echo "<script>window.location.href='http://{도메인}/page/user/login.htm?tmp_num=2&bid=".$f_bid."&tmp_num_mb=".$tmp_num_mb."';</script>";
+			echo "<script>window.location.href='http://localhost/page/user/login.htm?tmp_num=2&bid=".$f_bid."&tmp_num_mb=".$tmp_num_mb."';</script>";
 		}
 		else{
 			//실패했을 때도 bgbid값이 증가하기 때문에 이를 맞추기 위함
@@ -29,7 +29,7 @@
 			if($gb_result==0){
 				if ($bv->insert(4) && $bv->update(5)) {
 					echo "<script>alert('게시판 비추천 성공!');</script>";
-					echo "<script>window.location.href='http://{도메인}/page/board/board_read.htm?page=1&bid=".$f_bid."&tmp_num=".$tmp_num_mb."';</script>";
+					echo "<script>window.location.href='http://localhost/page/board/board_read.htm?page=1&bid=".$f_bid."&tmp_num=".$tmp_num_mb."';</script>";
 				} else {
 					echo "<script>alert('게시판 비추천 실패!');</script>";
 					echo "<script>window.history.back();</script>";
@@ -38,7 +38,7 @@
 			else if($gb_result==1){
 				if ($bv->delete(3) && $bv->update(4)) {
 					echo "<script>alert('게시판 비추천 취소 성공!');</script>";
-					echo "<script>window.location.href='http://{도메인}/page/board/board_read.htm?page=1&bid=".$f_bid."&tmp_num=".$tmp_num_mb."';</script>";
+					echo "<script>window.location.href='http://localhost/page/board/board_read.htm?page=1&bid=".$f_bid."&tmp_num=".$tmp_num_mb."';</script>";
 				} else {
 					echo "<script>alert('게시판 비추천 취소 실패!');</script>";
 					echo "<script>window.history.back();</script>";
