@@ -8,6 +8,22 @@ RUN yum -y update && \
     yum -y install mod_security && \
     yum clean all
 
+RUN sed -i 's|^LoadModule mpm_event_module modules/mod_mpm_event.so|#LoadModule mpm_event_module modules/mod_mpm_event.so|' /etc/httpd/conf.modules.d/00-mpm.conf
+RUN sed -i 's|^#LoadModule mpm_prefork_module modules/mod_mpm_prefork.so|LoadModule mpm_prefork_module modules/mod_mpm_prefork.so|' /etc/httpd/conf.modules.d/00-mpm.conf
+
+RUN sed -i 's|^short_open_tag = Off|short_open_tag = On|' /etc/php.ini
+RUN sed -i 's|^;date.timezone =|date.timezone = Asia/Seoul|' /etc/php.ini
+
+RUN printf "ServerTokens Prod\n\
+ServerSignature Off\n\
+<IfModule security2_module>\n\
+   SecRuleEngine on\n\
+   SecServerSignature \" \"\n\
+</IfModule>\n\
+php_value default_charset \"EUC-KR\"" >> /etc/httpd/conf/httpd.conf
+
+COPY php.conf /etc/httpd/conf.d/php.conf
+
 WORKDIR /var/www/html
 
 COPY . /var/www/html
