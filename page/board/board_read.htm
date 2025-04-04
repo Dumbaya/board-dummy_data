@@ -98,7 +98,14 @@
 					</tr>
 					<tr>
 						<td>작성 내용</td>
-						<td><?php echo $br->board_body ?></td>
+						<td>
+							<textarea id="board_body" name="board_body" readonly><?php 
+								$bd = $br->board_body;
+								$bd = str_replace('<br>', "\r\n", $bd);
+echo $bd;
+							?>
+							</textarea>
+						</td>
 					</tr>
 					<tr>
 						<td>조회 수</td>
@@ -158,7 +165,7 @@
 										<!-- 댓글 본문 -->
 										<div class="comment_body">
 											<p><strong><?php echo $bcr->bc_writer; ?></strong></p>
-											<p><?php echo $bcr->bc_comment; ?></p>
+											<p><textarea id="comment_body" name="comment_body" readonly><?php echo $bcr->bc_comment; ?></textarea></p>
 											<?php echo $bcr->bc_gb; ?>
 											<p class="comment_date"><?php echo $bcr->bc_date; ?></p>
 											<p></p>
@@ -207,7 +214,7 @@
 				<?php if(isset($_SESSION['user_nickname'])): ?>
 					<form class="board_comment_form" name="board_comment_form" method="post" action="http://localhost/php/board/board_comment_write.php?bid=<?php echo $bid ?>" onsubmit="return boardcomment_check()">
 						<input type="hidden" id="tmp_num_mb" name="tmp_num_mb" value="<?php echo $tmp_num_mb ?>">
-						<input type="text" id="board_comment" name="board_comment">
+						<textarea id="board_comment" name="board_comment"></textarea>
 						<button type="submit">댓글 작성</button>
 					</form>
 				<?php else: ?>

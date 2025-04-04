@@ -31,7 +31,7 @@
 			</form>
 			<form class="bcu_form" method="post" action="http://localhost/php/board/board_comment_update.php?bcid=<?php echo $number ?>">
 				<input type="hidden" name="tmp_num" value="<?php echo $tmp_num ?>">
-				<input type="text" id="bc_comment" name="bc_comment" value="<?php echo $br->bc_comment ?>">
+				<textarea id="bc_comment" name="bc_comment"><?php echo $br->bc_comment ?></textarea>
 				<input type="hidden" id="f_bid" name="f_bid" value="<?php echo $br->f_bid ?>">
 				<br>
 				<button type="submit">수정하기</button>

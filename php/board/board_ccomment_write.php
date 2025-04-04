@@ -43,8 +43,8 @@
 			':group_id' => $group_id,
 			':group_o' => $group_o,
 			':depth' => $depth,
-			':bc_comment' => $bc_comment,
-			':bc_writer' => $bc_writer,
+			':bc_comment' => iconv('EUC-KR','UTF-8',$bc_comment),
+			':bc_writer' => iconv('EUC-KR','UTF-8',$bc_writer),
 			':bc_date' => $bc_date
 		])){
 			echo "<script>alert('대댓글 작성 성공!');</script>";

@@ -12,6 +12,7 @@
 		$img_name = 'board_img';
 		$dir_path = '../../img/board/';
 
+		$board_body = str_replace("\r\n", '<br>', $board_body);
 		$bv = new boardVO();
 
 		$bv->board_set($board_title, $board_writer, $board_body, $board_date);

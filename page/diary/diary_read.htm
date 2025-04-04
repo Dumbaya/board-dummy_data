@@ -52,7 +52,11 @@
 					</tr>
 					<tr class="dr_btr">
 						<td>작성 내용</td>
-						<td><?php echo $dr->dl_body ?></td>
+						<td>
+							<textarea id="diary_body" name="diary_body" readonly><?php 
+								echo $dr->dl_body ?>
+							</textarea>
+						</td>
 					</tr>
 					<?php if($dr->dl_imgp != '') : ?>
 					<tr class="dr_btr">

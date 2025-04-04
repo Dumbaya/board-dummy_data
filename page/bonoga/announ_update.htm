@@ -32,7 +32,7 @@
 			<form class="board_update_form" name="board_update_form" method="post" action="http://localhost/php/bonoga/announ_update.php?aid=<?php echo $aid ?>" enctype="multipart/form-data">
 				제목<br><input type="text" id="announ_title" name="announ_title" value="<?php echo $announ->a_title ?>">
 				<br>
-				내용<br><input id="announ_body" name="announ_body" value="<?php echo $announ->a_body ?>">
+				내용<br><textarea id="announ_body" name="announ_body"><?php echo $announ->a_body ?></textarea>
 				<br>
 				<input type="file" class="imgf_img" accept="image/*" name="abonoga_img">
 				<br>

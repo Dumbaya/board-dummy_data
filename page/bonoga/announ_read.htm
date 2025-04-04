@@ -56,12 +56,22 @@
 					</tr>
 					<tr>
 						<td>작성 내용</td>
-						<td><?php echo $announ->a_body ?></td>
+						<td>
+							<textarea id="announ_body" name="announ_body" readonly><?php
+								echo $announ->a_body ?>
+							</textarea>
+						</td>
 					</tr>
+					<?
+						if($announ->a_imgp):
+					?>
 					<tr>
 						<td>이미지</td>
 						<td><img src="<?php echo $announ->a_imgp ?>"></td>
 					</tr>
+					<?
+						endif;
+					?>
 				</table>
 			</div>
 		</div>

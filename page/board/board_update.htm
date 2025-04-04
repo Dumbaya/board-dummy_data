@@ -34,7 +34,12 @@
 				<input type="hidden" name="tmp_num" value="<?php echo $tmp_num ?>">
 				제목<br><input type="text" id="board_title" name="board_title" value="<?php echo $board->board_title ?>">
 				<br>
-				내용<br><textarea id="board_body" name="board_body"><?php echo $board->board_body ?></textarea>
+				내용<br><textarea id="board_body" name="board_body"><?php 
+						$bd = $board->board_body;
+						$bd = str_replace('<br>', "\r\n", $bd);
+						echo $bd;
+					?>
+				</textarea>
 				<br>
 				<input type="file" class="imgf_img" accept="image/*" name="board_img">
 				<br>
